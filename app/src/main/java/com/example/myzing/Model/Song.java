@@ -1,7 +1,7 @@
 package com.example.myzing.Model;
 
 public class Song {
-    private int id;
+    private int idSong;
     private String nameSong;
     private String imageSong;
     private String linkSong;
@@ -11,8 +11,9 @@ public class Song {
     public Song() {
     }
 
-    public Song(int id, String nameSong, String imageSong, String linkSong, String singer, int likes) {
-        this.id = id;
+    public Song(int idSong, String nameSong, String imageSong, String linkSong, String singer, int likes) {
+
+        this.idSong = idSong;
         this.nameSong = nameSong;
         this.imageSong = imageSong;
         this.linkSong = linkSong;
@@ -28,12 +29,12 @@ public class Song {
         this.likes = likes;
     }
 
-    public int getId() {
-        return id;
+    public int getIdSong() {
+        return idSong;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdSong(int idSong) {
+        this.idSong = idSong;
     }
 
     public String getNameSong() {
@@ -43,6 +44,7 @@ public class Song {
     public void setNameSong(String nameSong) {
         this.nameSong = nameSong;
     }
+
 
     public String getImageSong() {
         return imageSong;

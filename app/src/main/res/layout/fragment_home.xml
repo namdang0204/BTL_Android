@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#9C27B0">
+    android:scrollbars="none"
+    android:fillViewport="true">
+    <LinearLayout
 
-</android.support.constraint.ConstraintLayout>
+        android:id="@+id/linearlayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <fragment
+            android:name="com.example.myzing.Fragment.Fragment_Banner"
+            android:id="@+id/fragmentBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </fragment>
+    </LinearLayout>
+
+</ScrollView>

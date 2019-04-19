@@ -1,30 +1,32 @@
 package com.example.myzing.Model;
 
 public class Advertise {
-    private int id;
+    private int idAdvertise;
     private String imageAdvertise;
-    private String content;
+
+
+    private String contentAdvertise;
 
     public Advertise() {
     }
 
-    public Advertise(int id, String imageAdvertise, String content) {
-        this.id = id;
+    public Advertise(int idAdvertise, String imageAdvertise, String contentAdvertise) {
+        this.idAdvertise = idAdvertise;
         this.imageAdvertise = imageAdvertise;
-        this.content = content;
+        this.contentAdvertise = contentAdvertise;
     }
 
-    public Advertise(String imageAdvertise, String content) {
+    public Advertise(String imageAdvertise, String contentAdvertise) {
         this.imageAdvertise = imageAdvertise;
-        this.content = content;
+        this.contentAdvertise = contentAdvertise;
     }
 
-    public int getId() {
-        return id;
+    public int getIdAdvertise() {
+        return idAdvertise;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdAdvertise(int idAdvertise) {
+        this.idAdvertise = idAdvertise;
     }
 
     public String getImageAdvertise() {
@@ -35,11 +37,11 @@ public class Advertise {
         this.imageAdvertise = imageAdvertise;
     }
 
-    public String getContent() {
-        return content;
+    public String getContentAdvertise() {
+        return contentAdvertise;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setContentAdvertise(String contentAdvertise) {
+        this.contentAdvertise = contentAdvertise;
     }
 }
