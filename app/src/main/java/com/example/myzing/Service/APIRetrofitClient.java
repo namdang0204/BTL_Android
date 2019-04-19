@@ -12,7 +12,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Protocol;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
+//tạo ra 1 retrofit để tương tác với server
 public class APIRetrofitClient {
     private static Retrofit retrofit = null;
 
@@ -24,11 +24,10 @@ public class APIRetrofitClient {
                 .retryOnConnectionFailure(true)
                 .protocols(Arrays.asList(Protocol.HTTP_1_1))
                 .build();
+        //Gson giúp convert từ API sang java class
         Gson gson = new GsonBuilder().setLenient().create();
         retrofit = new Retrofit.Builder().baseUrl(base_url).client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson)).build();
         return retrofit;
-
-
     }
 }

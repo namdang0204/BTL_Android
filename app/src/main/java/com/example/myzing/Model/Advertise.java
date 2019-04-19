@@ -1,31 +1,34 @@
 package com.example.myzing.Model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Advertise {
-    private int idAdvertise;
+
+    @SerializedName("idAdvertise")
+    @Expose
+    private String idAdvertise;
+    @SerializedName("imageAdvertise")
+    @Expose
     private String imageAdvertise;
+    @SerializedName("content")
+    @Expose
+    private String content;
+    @SerializedName("idSong")
+    @Expose
+    private String idSong;
+    @SerializedName("nameSong")
+    @Expose
+    private String nameSong;
+    @SerializedName("imageSong")
+    @Expose
+    private String imageSong;
 
-
-    private String contentAdvertise;
-
-    public Advertise() {
-    }
-
-    public Advertise(int idAdvertise, String imageAdvertise, String contentAdvertise) {
-        this.idAdvertise = idAdvertise;
-        this.imageAdvertise = imageAdvertise;
-        this.contentAdvertise = contentAdvertise;
-    }
-
-    public Advertise(String imageAdvertise, String contentAdvertise) {
-        this.imageAdvertise = imageAdvertise;
-        this.contentAdvertise = contentAdvertise;
-    }
-
-    public int getIdAdvertise() {
+    public String getIdAdvertise() {
         return idAdvertise;
     }
 
-    public void setIdAdvertise(int idAdvertise) {
+    public void setIdAdvertise(String idAdvertise) {
         this.idAdvertise = idAdvertise;
     }
 
@@ -37,11 +40,36 @@ public class Advertise {
         this.imageAdvertise = imageAdvertise;
     }
 
-    public String getContentAdvertise() {
-        return contentAdvertise;
+    public String getContent() {
+        return content;
     }
 
-    public void setContentAdvertise(String contentAdvertise) {
-        this.contentAdvertise = contentAdvertise;
+    public void setContent(String content) {
+        this.content = content;
     }
+
+    public String getIdSong() {
+        return idSong;
+    }
+
+    public void setIdSong(String idSong) {
+        this.idSong = idSong;
+    }
+
+    public String getNameSong() {
+        return nameSong;
+    }
+
+    public void setNameSong(String nameSong) {
+        this.nameSong = nameSong;
+    }
+
+    public String getImageSong() {
+        return imageSong;
+    }
+
+    public void setImageSong(String imageSong) {
+        this.imageSong = imageSong;
+    }
+
 }

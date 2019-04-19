@@ -8,5 +8,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface DataService {
-    Call<List<Advertise>> GetDataService();
+
+    @GET ("getDataAdvertise.php")
+    Call<List<Advertise>> GetDataAdvertise();
 }

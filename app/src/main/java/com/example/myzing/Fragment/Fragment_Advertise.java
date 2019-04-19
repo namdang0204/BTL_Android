@@ -1,6 +1,7 @@
 package com.example.myzing.Fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.myzing.Adapter.BannerAdapter;
+import com.example.myzing.Adapter.AdvertiseAdapter;
 import com.example.myzing.Model.Advertise;
 import com.example.myzing.R;
 import com.example.myzing.Service.APIService;
@@ -23,12 +24,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Fragment_Banner extends Fragment {
+public class Fragment_Advertise extends Fragment {
     View view;
     ViewPager viewPager;
     CircleIndicator circleIndicator;
-    BannerAdapter bannerAdapter;
-
+    AdvertiseAdapter advertiseAdapter;
+    Runnable runnable;
+    Handler handler;
+    int currentItem = 0;
 
     @Nullable
     @Override
@@ -46,17 +49,30 @@ public class Fragment_Banner extends Fragment {
     }
 
     private void GetData() {
-        DataService dataService = APIService.geDataService();
-        Call<List<Advertise>> listCall = dataService.GetDataService();
+        DataService dataService = APIService.getDataService();
+        Call<List<Advertise>> listCall = dataService.GetDataAdvertise();
         listCall.enqueue(new Callback<List<Advertise>>() {
             @Override
             public void onResponse(Call<List<Advertise>> call, Response<List<Advertise>> response) {
-                ArrayList<Advertise> arrayListBanner = (ArrayList<Advertise>) response.body();
-
-
-                bannerAdapter = new BannerAdapter(getActivity(), arrayListBanner);
-                viewPager.setAdapter(bannerAdapter);
+                ArrayList<Advertise> arrayListAdvertise = (ArrayList<Advertise>) response.body();
+                advertiseAdapter = new AdvertiseAdapter(getActivity(), arrayListAdvertise);
+                viewPager.setAdapter(advertiseAdapter);
                 circleIndicator.setViewPager(viewPager);
+
+                handler = new Handler();
+                runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        currentItem = viewPager.getCurrentItem();
+                        currentItem++;
+                        if(currentItem >= viewPager.getAdapter().getCount()){
+                            currentItem = 0;
+                        }
+                        viewPager.setCurrentItem(currentItem, true);
+                        handler.postDelayed(runnable, 4000);
+                    }
+                };
+                handler.postDelayed(runnable, 4000);
             }
 
             @Override

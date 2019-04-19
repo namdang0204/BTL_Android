@@ -5,49 +5,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
-
+        android:background="@drawable/custom_background_banner"
         android:scaleType="fitXY"
-        android:id="@+id/imageviewbackgroundbanner"
+        android:id="@+id/imageview_background_advertise"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="180dp" />
     <View
-        android:background="@drawable/imgbackgroundbanner"
-        android:layout_width="match_parent"
-        android:layout_height="200dp">
 
-    </View>
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
+
+    </View
+>
     <RelativeLayout
         android:id="@+id/relaytiveLayout"
-        android:layout_alignBottom="@+id/imageviewbackgroundbanner"
+        android:layout_alignBottom="@+id/imageview_background_advertise"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:id="@+id/imageviewbanner"
+            android:id="@+id/imageview_icon_advertise"
             android:padding="2dp"
             android:layout_width="80dp"
             android:layout_height="80dp" />
         <TextView
-            android:textColor="#F37171"
+            android:textColor="#FFFFFF"
             android:text="Khong phai anh dung khong"
-            android:textSize="20sp"
-            android:id="@+id/textviewtitlebanner"
-            android:layout_toRightOf="@+id/imageviewbanner"
-            android:layout_alignTop="@+id/imageviewbanner"
-            android:layout_marginTop="5dp"
+            android:textSize="16sp"
+            android:id="@+id/textview_title_advertise"
+            android:layout_toRightOf="@+id/imageview_icon_advertise"
+            android:layout_alignTop="@+id/imageview_icon_advertise"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <RelativeLayout
 
-            android:layout_toRightOf="@+id/imageviewbanner"
-            android:layout_below="@+id/textviewtitlebanner"
+            android:layout_toRightOf="@+id/imageview_icon_advertise"
+            android:layout_below="@+id/textview_title_advertise"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="10dp">
             <TextView
-                android:id="@+id/textviewcontent"
+                android:id="@+id/textview_content"
+                android:textColor="#FFFFFF"
                 android:text="Duong Hoang Yen"
                 android:maxLines="3"
                 android:layout_marginRight="40dp"
