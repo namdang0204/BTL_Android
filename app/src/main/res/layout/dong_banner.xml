@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
+
         android:scaleType="fitXY"
         android:id="@+id/imageviewbackgroundbanner"
         android:layout_width="match_parent"
         android:layout_height="200dp" />
     <View
-        android:background="@drawable/custom_background_banner"
+        android:background="@drawable/imgbackgroundbanner"
         android:layout_width="match_parent"
         android:layout_height="200dp">
 

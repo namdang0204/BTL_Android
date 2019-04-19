@@ -47,6 +47,7 @@ public class BannerAdapter extends PagerAdapter {
         TextView textviewtitle=  view.findViewById(R.id.textviewtitlebanner);
         TextView textviewcontent= view. findViewById(R.id.textviewcontent);
 //        Picasso.with(context).load(arrayListBanner.get(position).get;
+        container.addView(view);
         return view;
     }
 }
