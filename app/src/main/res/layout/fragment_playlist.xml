@@ -9,18 +9,19 @@
         android:id="@+id/textView_Title_Playlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="5dp"
         android:text="CHỦ NHẬT ÊM ĐỀM"
         android:textColor="#f00"
         android:textSize="15dp" />
 
     <ListView
         android:id="@+id/listView_Playlist"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView_Title_Playlist"
-        android:layout_marginTop="28dp"></ListView>
+        android:layout_marginTop="35dp"></ListView>
 
     <TextView
         android:id="@+id/textView_More_Playlist"
@@ -32,8 +33,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/listView_Playlist"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="30dp"
         android:background="#E0E2F1"
         android:paddingTop="10dp"
         android:paddingBottom="10dp" />
