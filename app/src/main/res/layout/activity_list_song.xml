@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/coordinatorlayout"
+    android:fitsSystemWindows="true"
+    tools:context=".Activity.ListSongActivity">
+    
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbarlayout"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:fitsSystemWindows="true">
+        
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsingtoolbarlayout"
+            app:expandedTitleGravity="center|bottom"
+            app:expandedTitleMarginBottom="40dp"
+            android:background="@drawable/custom_background_advertise"
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_background_advertise"></View>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_list"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:layout_collapseMode="pin"
+                android:elevation="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"></android.support.v7.widget.Toolbar>
+            <ImageView
+                android:elevation="6dp"
+                android:layout_marginTop="40dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginBottom="60dp"
+                android:layout_gravity="center"
+                android:id="@+id/imageview_list_song"
+                android:layout_width="120dp"
+                android:layout_height="120dp" />
+        </android.support.design.widget.CollapsingToolbarLayout>
+        
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingactionbutton"
+        app:fabSize="mini"
+        android:src="@drawable/icon_home"
+        android:backgroundTint="#a845de"
+        android:scaleType="fitXY"
+        app:layout_anchorGravity="bottom|center"
+        app:layout_anchor="@id/appbarlayout"
+        app:layout_behavior="@string/bottom_sheet_behavior"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedscrollview"
+        android:layout_marginTop="30dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycleview_list_song"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

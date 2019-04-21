@@ -17,7 +17,7 @@ import java.util.List;
 
 public class PlaylistAdapter extends ArrayAdapter<Playlist> {
 
-    public PlaylistAdapter(@androidx.annotation.NonNull Context context, int resource, @androidx.annotation.NonNull List<Playlist> objects) {
+    public PlaylistAdapter(Context context, int resource, List<Playlist> objects) {
         super(context, resource, objects);
     }
 
@@ -28,7 +28,7 @@ public class PlaylistAdapter extends ArrayAdapter<Playlist> {
 
     @NonNull
     @Override
-    public View getView(int position, @androidx.annotation.Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         ViewHolder viewHolder=null;
 
         return super.getView(position, convertView, parent);

@@ -1,6 +1,7 @@
 package com.example.myzing.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -8,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.myzing.Activity.ListSongActivity;
 import com.example.myzing.Model.Advertise;
 import com.example.myzing.R;
 import com.squareup.picasso.Picasso;
@@ -39,7 +42,7 @@ public class AdvertiseAdapter extends PagerAdapter {
 
     @NonNull
     @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+    public Object instantiateItem(@NonNull ViewGroup container, final int position) {
         LayoutInflater inflater=LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.dong_banner, null);
 
@@ -52,6 +55,14 @@ public class AdvertiseAdapter extends PagerAdapter {
         Picasso.with(context).load(arrayListAdvertise.get(position).getImageSong()).into(imgIconAdvertise);
         textViewTitleAdvertise.setText(arrayListAdvertise.get(position).getNameSong());
         textviewContent.setText(arrayListAdvertise.get(position).getContent());
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ListSongActivity.class);
+                intent.putExtra("advertise", arrayListAdvertise.get(position));
+                context.startActivity(intent);
+            }
+        });
 
         container.addView(view);
         return view;

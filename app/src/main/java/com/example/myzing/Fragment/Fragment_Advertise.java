@@ -36,7 +36,7 @@ public class Fragment_Advertise extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_banner, container, false);
+        view = inflater.inflate(R.layout.fragment_advertise, container, false);
         GetData();
         anhxa();
         return view;
@@ -69,10 +69,10 @@ public class Fragment_Advertise extends Fragment {
                             currentItem = 0;
                         }
                         viewPager.setCurrentItem(currentItem, true);
-                        handler.postDelayed(runnable, 4000);
+                        handler.postDelayed(runnable, 5000);
                     }
                 };
-                handler.postDelayed(runnable, 4000);
+                handler.postDelayed(runnable, 5000);
             }
 
             @Override
