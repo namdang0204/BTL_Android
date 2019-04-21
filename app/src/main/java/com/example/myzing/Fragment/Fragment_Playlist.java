@@ -37,9 +37,9 @@ public class Fragment_Playlist extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_playlist, container, false);
-        lv_Playlist =view.findViewById(R.id.listView_Playlist);
-        tv_Title_Playlist= view.findViewById(R.id.textView_Title_Playlist);
-        tv_More_Playlist= view.findViewById(R.id.textView_More_Playlist);
+        lv_Playlist =view.findViewById(R.id.listview_playlist);
+        tv_Title_Playlist= view.findViewById(R.id.textview_title_playlist);
+        tv_More_Playlist= view.findViewById(R.id.textview_viewmore_playlist);
         GetData();
         return view;
     }
