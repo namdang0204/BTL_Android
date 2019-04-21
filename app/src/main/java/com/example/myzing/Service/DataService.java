@@ -1,6 +1,7 @@
 package com.example.myzing.Service;
 
 import com.example.myzing.Model.Advertise;
+import com.example.myzing.Model.Playlist;
 
 import java.util.List;
 
@@ -9,6 +10,8 @@ import retrofit2.http.GET;
 
 public interface DataService {
 
-    @GET ("getDataAdvertise.php")
+    @GET("getDataAdvertise.php")
     Call<List<Advertise>> GetDataAdvertise();
+
+
 }

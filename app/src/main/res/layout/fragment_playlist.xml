@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-</LinearLayout>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/textView_Title_Playlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="CHỦ NHẬT ÊM ĐỀM"
+        android:textColor="#f00"
+        android:textSize="15dp" />
+
+    <ListView
+        android:id="@+id/listView_Playlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView_Title_Playlist"
+        android:layout_marginTop="28dp"></ListView>
+
+    <TextView
+        android:id="@+id/textView_More_Playlist"
+        android:text="View more"
+        android:textSize="15dp"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/icon_more_playlist"
+        android:paddingLeft="10dp"
+        android:textColor="#fff2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listView_Playlist"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#E0E2F1"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp" />
+
+
+</RelativeLayout>
