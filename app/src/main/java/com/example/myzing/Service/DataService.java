@@ -1,6 +1,7 @@
 package com.example.myzing.Service;
 
 import com.example.myzing.Model.Advertise;
+import com.example.myzing.Model.Playlist;
 import com.example.myzing.Model.Song;
 
 import java.util.List;
@@ -15,6 +16,9 @@ public interface DataService {
 
     @GET ("getDataAdvertise.php")
     Call<List<Advertise>> GetDataAdvertise();
+
+    @GET("getPlaylist.php")
+    Call<List<Playlist>> GetPlaylist();
 
     @FormUrlEncoded
     @POST("getListSong.php")
