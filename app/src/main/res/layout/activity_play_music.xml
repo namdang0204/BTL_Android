@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:background="#B39C27B0"
+    tools:context=".Activity.PlayMusicActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_play_music"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"></android.support.v7.widget.Toolbar>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager_play_music"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"></android.support.v4.view.ViewPager>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <TextView
+                android:id="@+id/textview_time_song"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="00:00"
+                android:textColor="#ffff"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <SeekBar
+                android:id="@+id/seekbar_time_song"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="9" />
+
+            <TextView
+                android:id="@+id/textview_total_time_song"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="00:00"
+                android:textColor="#ffff"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imagebutton_shuffle"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="10dp"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_shuffle" />
+
+            <ImageButton
+                android:id="@+id/imagebutton_preview"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_preview" />
+
+            <ImageButton
+                android:id="@+id/imagebutton_play"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="15dp"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_play" />
+            <ImageButton
+                android:id="@+id/imagebutton_next"
+                android:src="@drawable/icon_next"
+                android:scaleType="fitXY"
+                android:background="@null"
+                android:layout_marginRight="20dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+            <ImageButton
+                android:id="@+id/imagebutton_repeat"
+                android:src="@drawable/icon_repeat"
+                android:scaleType="fitXY"
+                android:background="@null"
+                android:layout_marginRight="15dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

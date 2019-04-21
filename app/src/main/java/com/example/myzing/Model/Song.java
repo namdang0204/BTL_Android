@@ -1,9 +1,14 @@
 package com.example.myzing.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Song {
+import java.io.Serializable;
+
+public class Song implements Parcelable {
 
     @SerializedName("idSong")
     @Expose
@@ -29,6 +34,29 @@ public class Song {
     @SerializedName("likes")
     @Expose
     private String likes;
+
+    protected Song(Parcel in) {
+        idSong = in.readString();
+        albumId = in.readString();
+        nameSong = in.readString();
+        imageSong = in.readString();
+        linkSong = in.readString();
+        singer = in.readString();
+        lyric = in.readString();
+        likes = in.readString();
+    }
+
+    public static final Creator<Song> CREATOR = new Creator<Song>() {
+        @Override
+        public Song createFromParcel(Parcel in) {
+            return new Song(in);
+        }
+
+        @Override
+        public Song[] newArray(int size) {
+            return new Song[size];
+        }
+    };
 
     public String getIdSong() {
         return idSong;
@@ -94,4 +122,20 @@ public class Song {
         this.likes = likes;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(idSong);
+        dest.writeString(albumId);
+        dest.writeString(nameSong);
+        dest.writeString(imageSong);
+        dest.writeString(linkSong);
+        dest.writeString(singer);
+        dest.writeString(lyric);
+        dest.writeString(likes);
+    }
 }

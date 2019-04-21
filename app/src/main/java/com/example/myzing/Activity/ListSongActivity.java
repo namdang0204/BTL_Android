@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
+import android.os.StrictMode;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -52,6 +53,8 @@ public class ListSongActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_song);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         DataIntent();
         anhXa();
         init();
@@ -59,6 +62,15 @@ public class ListSongActivity extends AppCompatActivity {
             setValueInView(advertise.getNameSong(), advertise.getImageSong());
             getDataAdvertise(advertise.getIdAdvertise());
         }
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListSongActivity.this, PlayMusicActivity.class);
+                intent.putExtra("listSong", listSong);
+                startActivity(intent);
+            }
+        });
+
     }
     //get dữ liệu từ server gửi về
     private void getDataAdvertise(String idAdvertise) {
@@ -71,6 +83,7 @@ public class ListSongActivity extends AppCompatActivity {
                 listSongAdapter = new ListSongAdapter(ListSongActivity.this, listSong);
                 recyclerViewListSong.setLayoutManager(new LinearLayoutManager(ListSongActivity.this));
                 recyclerViewListSong.setAdapter(listSongAdapter);
+//                evenClick();
             }
 
             @Override
@@ -109,6 +122,7 @@ public class ListSongActivity extends AppCompatActivity {
         });
         collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
+//        floatingActionButton.setEnabled(false);
     }
 
     private void anhXa() {
@@ -129,4 +143,16 @@ public class ListSongActivity extends AppCompatActivity {
             }
         }
     }
+
+//    private void evenClick(){
+//        floatingActionButton.setEnabled(true);
+//        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(ListSongActivity.this, PlaySongActivity.class);
+//                intent.putExtra("listSong", listSong);
+//                startActivity(intent);
+//            }
+//        });
+//    }
 }
