@@ -11,6 +11,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.myzing.Adapter.ListSongAdapter;
 import com.example.myzing.Model.Advertise;
 import com.example.myzing.Model.Song;
 import com.example.myzing.R;
@@ -42,6 +44,7 @@ public class ListSongActivity extends AppCompatActivity {
     private FloatingActionButton floatingActionButton;
     private ImageView imageViewListSong;
     private Advertise advertise;
+    private ListSongAdapter listSongAdapter;
 
     private ArrayList<Song> listSong;
 
@@ -57,7 +60,7 @@ public class ListSongActivity extends AppCompatActivity {
             getDataAdvertise(advertise.getIdAdvertise());
         }
     }
-
+    //get dữ liệu từ server gửi về
     private void getDataAdvertise(String idAdvertise) {
         DataService dataService = APIService.getDataService();
         Call<List<Song>> callbackListSong = dataService.GetListSongOfAdvertise(idAdvertise);
@@ -65,7 +68,9 @@ public class ListSongActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
                 listSong = (ArrayList<Song>) response.body();
-                Log.d("AAA", listSong.get(0).getNameSong());
+                listSongAdapter = new ListSongAdapter(ListSongActivity.this, listSong);
+                recyclerViewListSong.setLayoutManager(new LinearLayoutManager(ListSongActivity.this));
+                recyclerViewListSong.setAdapter(listSongAdapter);
             }
 
             @Override
@@ -121,7 +126,6 @@ public class ListSongActivity extends AppCompatActivity {
         if (intent != null) {
             if(intent.hasExtra("advertise")){
                 advertise = (Advertise) intent.getSerializableExtra("advertise");
-                Toast.makeText(this, advertise.getNameSong(), Toast.LENGTH_SHORT).show();
             }
         }
     }

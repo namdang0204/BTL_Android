@@ -7,13 +7,14 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp">
+        android:layout_height="wrap_content"
+        android:padding="15dp">
         <TextView
             android:id="@+id/textview_index_list_song"
             android:textSize="20sp"
             android:text="1"
-            android:layout_margin="10dp"
+            android:layout_centerVertical="true"
+            android:paddingRight="15dp"
             android:textColor="#000000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -21,7 +22,7 @@
             android:id="@+id/textView_name_song"
             android:text="Ten bai hat"
             android:textColor="#000000"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:layout_toRightOf="@id/textview_index_list_song"
             android:maxWidth="250dp"
             android:ellipsize="end"
@@ -32,12 +33,18 @@
             android:id="@+id/textview_name_singer"
             android:text="Ten ca si"
             android:textColor="#99000000"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:layout_toRightOf="@id/textview_index_list_song"
             android:layout_below="@id/textView_name_song"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-
+        <ImageView
+            android:id="@+id/imageview_like"
+            android:src="@drawable/icon_love"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>
