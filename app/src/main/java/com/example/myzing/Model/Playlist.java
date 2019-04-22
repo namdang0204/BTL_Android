@@ -17,6 +17,9 @@ public class Playlist {
     @SerializedName("imagePlaylist")
     @Expose
     private String imagePlaylist;
+    @SerializedName("imageIcon")
+    @Expose
+    private String imageIcon;
 
     public String getId() {
         return id;
@@ -48,6 +51,14 @@ public class Playlist {
 
     public void setImagePlaylist(String imagePlaylist) {
         this.imagePlaylist = imagePlaylist;
+    }
+
+    public String getImageIcon() {
+        return imageIcon;
+    }
+
+    public void setImageIcon(String imageIcon) {
+        this.imageIcon = imageIcon;
     }
 
 }

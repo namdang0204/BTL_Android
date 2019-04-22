@@ -35,17 +35,17 @@ public class PlaylistAdapter extends ArrayAdapter<Playlist> {
             LayoutInflater inflater= LayoutInflater.from(getContext());
             convertView= inflater.inflate(R.layout.dong_playlist, null);
             viewHolder= new ViewHolder();
-            viewHolder.txtview_NamePlaylist= convertView.findViewById(R.id.textView_Name_Playlist);
-            viewHolder.imgBackgroundPlaylist= convertView.findViewById(R.id.imageview_background_playlist);
-            viewHolder.imgPlaylist= convertView.findViewById(R.id.imageview_playlist);
-            convertView.setTag(viewHolder);
+        viewHolder.txtview_NamePlaylist= convertView.findViewById(R.id.textView_Name_Playlist);
+        viewHolder.imgBackgroundPlaylist= convertView.findViewById(R.id.imageview_background_playlist);
+        viewHolder.imgPlaylist= convertView.findViewById(R.id.imageview_playlist);
+        convertView.setTag(viewHolder);
 
-        }else {
-            viewHolder= (ViewHolder) convertView.getTag();
-        }
-        Playlist playlist= getItem(position);
+    }else {
+        viewHolder= (ViewHolder) convertView.getTag();
+    }
+    Playlist playlist= getItem(position);
         Picasso.with(getContext()).load(playlist.getImagePlaylist()).into(viewHolder.imgBackgroundPlaylist);
-        Picasso.with(getContext()).load(playlist.getImagePlaylist()).into(viewHolder.imgPlaylist);
+        Picasso.with(getContext()).load(playlist.getImageIcon()).into(viewHolder.imgPlaylist);
         viewHolder.txtview_NamePlaylist.setText(playlist.getNamePlaylist());
         return convertView;
     }
