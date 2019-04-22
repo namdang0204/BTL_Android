@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.myzing.Adapter.ViewPagerPlaylistMusicAdapter;
 import com.example.myzing.Fragment.Fragment_Disk_Music;
 import com.example.myzing.Fragment.Fragment_List_Song_Play;
+import com.example.myzing.Fragment.Fragment_Lyric_Song;
 import com.example.myzing.Model.Song;
 import com.example.myzing.R;
 
@@ -36,6 +37,7 @@ public class PlayMusicActivity extends AppCompatActivity {
     public static ViewPagerPlaylistMusicAdapter viewPagerPlaylistMusicAdapter;
     private Fragment_List_Song_Play fragmentListSongPlay;
     private Fragment_Disk_Music fragmentDiskMusic;
+    private Fragment_Lyric_Song fragmentLyricSong;
     private MediaPlayer mediaPlayer;
     public static ArrayList<Song> listSong = new ArrayList<>();
 
@@ -58,6 +60,7 @@ public class PlayMusicActivity extends AppCompatActivity {
                 if (viewPagerPlaylistMusicAdapter.getItem(0) != null) {
                     if (listSong.size() > 0) {
                         fragmentDiskMusic.PlayMusic(listSong.get(0).getImageSong());
+                        fragmentLyricSong.setLyricSong(listSong.get(0).getLyric());
                         handler.removeCallbacks(this);
                     } else {
                         handler.postDelayed(this, 300);
@@ -92,9 +95,6 @@ public class PlayMusicActivity extends AppCompatActivity {
                 listSong = intent.getParcelableArrayListExtra("listSong");
             }
         }
-//        for (Song song : listSong) {
-//            Toast.makeText(this, song.getNameSong(), Toast.LENGTH_SHORT).show();
-//        }
     }
 
     private void init() {
@@ -118,18 +118,21 @@ public class PlayMusicActivity extends AppCompatActivity {
             }
         });
         toolbarPlayMusic.setTitleTextColor(Color.WHITE);
+
         fragmentListSongPlay = new Fragment_List_Song_Play();
         fragmentDiskMusic = new Fragment_Disk_Music();
+        fragmentLyricSong = new Fragment_Lyric_Song();
 
         viewPagerPlaylistMusicAdapter = new ViewPagerPlaylistMusicAdapter(getSupportFragmentManager());
         viewPagerPlaylistMusicAdapter.addFragment(fragmentListSongPlay);
         viewPagerPlaylistMusicAdapter.addFragment(fragmentDiskMusic);
+        viewPagerPlaylistMusicAdapter.addFragment(fragmentLyricSong);
         viewPagerPlayMusic.setAdapter(viewPagerPlaylistMusicAdapter);
+        viewPagerPlayMusic.setCurrentItem(1);
 
         fragmentDiskMusic = (Fragment_Disk_Music) viewPagerPlaylistMusicAdapter.getItem(1);
 
         if (listSong.size() > 0) {
-            Toast.makeText(this, listSong.get(0).getNameSong(), Toast.LENGTH_SHORT).show();
             getSupportActionBar().setTitle(listSong.get(0).getNameSong());
             new PlayMp3().execute(listSong.get(0).getLinkSong());
             imageButtonPlay.setImageResource(R.drawable.icon_pause);
