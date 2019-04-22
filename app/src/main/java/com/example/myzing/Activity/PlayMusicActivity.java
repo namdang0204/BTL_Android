@@ -45,8 +45,8 @@ public class PlayMusicActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play_music);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        init();
         getDataFromIntent();
+        init();
         evenClick();
     }
 
@@ -55,11 +55,11 @@ public class PlayMusicActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(viewPagerPlaylistMusicAdapter.getItem(0)!=null){
-                    if(listSong.size() > 0 ){
+                if (viewPagerPlaylistMusicAdapter.getItem(0) != null) {
+                    if (listSong.size() > 0) {
                         fragmentDiskMusic.PlayMusic(listSong.get(0).getImageSong());
                         handler.removeCallbacks(this);
-                    }else{
+                    } else {
                         handler.postDelayed(this, 300);
                     }
                 }
@@ -68,10 +68,10 @@ public class PlayMusicActivity extends AppCompatActivity {
         imageButtonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mediaPlayer.isPlaying()){
+                if (mediaPlayer.isPlaying()) {
                     mediaPlayer.pause();
                     imageButtonPlay.setImageResource(R.drawable.icon_play);
-                }else{
+                } else {
                     mediaPlayer.start();
                     imageButtonPlay.setImageResource(R.drawable.icon_pause);
                 }
@@ -92,6 +92,9 @@ public class PlayMusicActivity extends AppCompatActivity {
                 listSong = intent.getParcelableArrayListExtra("listSong");
             }
         }
+//        for (Song song : listSong) {
+//            Toast.makeText(this, song.getNameSong(), Toast.LENGTH_SHORT).show();
+//        }
     }
 
     private void init() {
@@ -125,7 +128,8 @@ public class PlayMusicActivity extends AppCompatActivity {
 
         fragmentDiskMusic = (Fragment_Disk_Music) viewPagerPlaylistMusicAdapter.getItem(1);
 
-        if(listSong.size() > 0){
+        if (listSong.size() > 0) {
+            Toast.makeText(this, listSong.get(0).getNameSong(), Toast.LENGTH_SHORT).show();
             getSupportActionBar().setTitle(listSong.get(0).getNameSong());
             new PlayMp3().execute(listSong.get(0).getLinkSong());
             imageButtonPlay.setImageResource(R.drawable.icon_pause);
