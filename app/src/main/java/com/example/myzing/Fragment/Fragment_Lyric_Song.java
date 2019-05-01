@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.myzing.Activity.PlayMusicActivity;
 import com.example.myzing.R;
 
 public class Fragment_Lyric_Song extends Fragment {
@@ -19,8 +20,10 @@ public class Fragment_Lyric_Song extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_lyric_song, container, false);
         textViewLyricSong = view.findViewById(R.id.textview_lyric_song);
+        setLyricSong(PlayMusicActivity.listSong.get(PlayMusicActivity.position).getLyric());
         return view;
     }
+
 
     public void setLyricSong(String lyricSong){
         textViewLyricSong.setText(lyricSong);

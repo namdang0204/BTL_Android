@@ -1,13 +1,19 @@
 package com.example.myzing.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.myzing.Activity.PlayMusicActivity;
+import com.example.myzing.Fragment.Fragment_List_Song_Play;
 import com.example.myzing.Model.Song;
 import com.example.myzing.R;
 
@@ -47,11 +53,27 @@ public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdap
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         private TextView textViewIndexPlaylistMusic, textViewNameSongPlaylistMusic, textViewNameSingerPlaylistMusic;
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
             textViewIndexPlaylistMusic = itemView.findViewById(R.id.textview_index_playlist_music);
             textViewNameSongPlaylistMusic = itemView.findViewById(R.id.textview_name_song_playlist_music);
             textViewNameSingerPlaylistMusic = itemView.findViewById(R.id.textview_name_singer_playlist_music);
+
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+////                    Toast.makeText(context, listSong.get(getPosition()).getNameSong(), Toast.LENGTH_SHORT).show();
+////                    Toast.makeText(context, getPosition()+"", Toast.LENGTH_SHORT).show();
+//                    PlayMusicActivity.position = getPosition();
+//                    PlayMusicActivity.select = true;
+////                    Intent intent = new Intent(context, PlayMusicActivity.class);
+////                    intent.putParcelableArrayListExtra("listSong", listSong);
+////                    intent.putExtra("test", getPosition()+"");
+////                    context.startActivity(intent);
+//                }
+//            });
         }
     }
+
+
 }

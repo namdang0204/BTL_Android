@@ -6,7 +6,6 @@
     <TextView
         android:id="@+id/textview_lyric_song"
         android:textSize="14sp"
-        android:text="Lyric bai hat"
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:layout_width="match_parent"

@@ -1,29 +1,43 @@
 package com.example.myzing.Model;
 
-public class User {
-    private int id;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class User implements Serializable {
+    @SerializedName("id")
+    @Expose
+    private String id;
+    @SerializedName("userName")
+    @Expose
     private String userName;
+    @SerializedName("password")
+    @Expose
     private String password;
+    @SerializedName("email")
+    @Expose
+    private String email;
+    @SerializedName("imageUser")
+    @Expose
+    private String imageUser;
 
     public User() {
     }
 
-    public User(int id, String userName, String password) {
+    public User(String id, String userName, String password, String email, String imageUser) {
         this.id = id;
         this.userName = userName;
         this.password = password;
+        this.email = email;
+        this.imageUser = imageUser;
     }
 
-    public User(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
-    }
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -41,5 +55,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getImageUser() {
+        return imageUser;
+    }
+
+    public void setImageUser(String imageUser) {
+        this.imageUser = imageUser;
     }
 }

@@ -6,11 +6,32 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleimageview_disk_music"
-        app:civ_border_width="2dp"
-        app:civ_border_color="#000"
         android:layout_centerInParent="true"
         android:src="@drawable/ic_launcher_background"
         android:layout_width="250dp"
         android:layout_height="250dp" />
+
+    <LinearLayout
+        android:id="@+id/linnerlayout_disk"
+        android:layout_below="@+id/circleimageview_disk_music"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@+id/imagebutton_share"
+            android:src="@drawable/icon_share"
+            android:background="@null"
+            android:layout_marginRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageButton
+            android:id="@+id/imagebutton_comment"
+            android:src="@drawable/ic_insert_comment_white_24dp"
+            android:background="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 </RelativeLayout>
