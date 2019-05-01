@@ -3,20 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/relaytivelayout_account"
     android:padding="5dp">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circleimageview_account"
-        android:src="@drawable/ic_launcher_background"
+
+    <com.facebook.login.widget.ProfilePictureView
+        android:id="@+id/profile_picture"
         android:layout_width="60dp"
         android:layout_height="60dp" />
 
     <TextView
         android:id="@+id/textview_name_account"
-        android:text="Name Account"
+        android:text="Đăng nhập"
         android:textSize="16sp"
         android:textColor="#000000"
-        android:layout_toRightOf="@+id/circleimageview_account"
+        android:layout_toRightOf="@+id/profile_picture"
         android:layout_marginLeft="20dp"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
@@ -26,23 +27,20 @@
         android:id="@+id/linearlayout_account"
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
-        android:layout_marginRight="5dp"
         android:orientation="vertical"
-        android:gravity="center|right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:gravity="center"
+        android:layout_width="60dp"
+        android:layout_height="60dp">
         <ImageView
-            android:id="@+id/imageview_login"
-            android:layout_marginRight="15dp"
+            android:id="@+id/imageview_status_login"
             android:background="@null"
             android:src="@drawable/user_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/textview_login"
+            android:id="@+id/textview_status_login"
             android:text="Login"
             android:textSize="14sp"
-            android:layout_marginRight="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>

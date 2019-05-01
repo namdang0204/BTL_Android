@@ -1,20 +1,24 @@
 package com.example.myzing.Activity;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.myzing.Adapter.MainViewPagerAdapter;
 import com.example.myzing.Fragment.Fragment_Home;
 import com.example.myzing.Fragment.Fragment_More;
 import com.example.myzing.Fragment.Fragment_MyMusic;
+import com.example.myzing.Model.User;
 import com.example.myzing.R;
 
 public class MainActivity extends AppCompatActivity {
 
     ViewPager viewPager;
     TabLayout tabLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +44,5 @@ public class MainActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.my_view_page);
         tabLayout = (TabLayout) findViewById(R.id.my_tablayout);
     }
-
 
 }

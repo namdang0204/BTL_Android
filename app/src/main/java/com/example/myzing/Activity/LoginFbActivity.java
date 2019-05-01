@@ -2,17 +2,18 @@ package com.example.myzing.Activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.myzing.Fragment.Fragment_Account;
 import com.example.myzing.Model.User;
 import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -33,14 +34,11 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class LoginFbActivity extends AppCompatActivity implements View.OnClickListener {
     CallbackManager callbackManager;
@@ -65,7 +63,7 @@ public class LoginFbActivity extends AppCompatActivity implements View.OnClickLi
         profilePictureView = (ProfilePictureView) findViewById(R.id.profile_picture_view);
         
         loginButton.setReadPermissions(Arrays.asList("public_profile", "email"));
-
+        user = new User();
         loginGoogle();
 
         setLogin_Button();
@@ -73,8 +71,6 @@ public class LoginFbActivity extends AppCompatActivity implements View.OnClickLi
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
         if (isLoggedIn) {
             LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile","user_birthday"));
-//            Intent intent = new Intent(LoginFbActivity.this, MainActivity.class);
-//            startActivity(intent);
         }
 
     }
@@ -116,7 +112,6 @@ public class LoginFbActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void signOutGoogle() {
-        LoginManager.getInstance().logOut();
         mGoogleSignInClient.signOut()
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
@@ -133,14 +128,13 @@ public class LoginFbActivity extends AppCompatActivity implements View.OnClickLi
                 GraphRequest graphRequest = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
                     public void onCompleted(JSONObject object, GraphResponse response) {
-                        user = getData(object);
+                        getData(object);
+
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("userFacebook", user);
-                        new Fragment_Account().setArguments(bundle);
-//                        Intent intent = new Intent(LoginFbActivity.this, Fragment_Account.class);
-//                        intent.putExtra("userFacebook", user);
-//                        startActivity(intent);
-//                        setResult(RESULT_OK, intent);
+                        Intent intent = new Intent();
+                        intent.putExtras(bundle);
+                        setResult(RESULT_OK, intent);
                         finish();
                     }
                 });
@@ -150,8 +144,6 @@ public class LoginFbActivity extends AppCompatActivity implements View.OnClickLi
                 parameters.putString("fields", "id, name, email");
                 graphRequest.setParameters(parameters);
                 graphRequest.executeAsync();
-
-
 
             }
 
@@ -167,36 +159,17 @@ public class LoginFbActivity extends AppCompatActivity implements View.OnClickLi
         });
     }
 
-    private User resultLogin() {
-        GraphRequest graphRequest = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
-            @Override
-            public void onCompleted(JSONObject object, GraphResponse response) {
-                user = getData(object);
-            }
-        });
-
-        // Request Graph API
-        Bundle parameters = new Bundle();
-        parameters.putString("fields", "id, name, email");
-        graphRequest.setParameters(parameters);
-        graphRequest.executeAsync();
-        return user;
-    }
-
-    private User getData(JSONObject object) {
+    private void getData(JSONObject object) {
         try {
-            User user = new User();
             String id = Profile.getCurrentProfile().getId();
             user.setId(id);
+            user.setUserName(object.getString("name"));
             user.setPassword("facebook");
             user.setEmail(object.getString("email"));
-            user.setImageUser("http://graph.facebook.com/" + id + "/picture?type=large");
-//            Toast.makeText(this, object.getString("email"), Toast.LENGTH_SHORT).show();
-//            profilePictureView.setProfileId(Profile.getCurrentProfile().getId());
+            user.setImageUser("http://graph.facebook.com/" + id + "/picture?type=small");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return user;
     }
 
 
@@ -218,8 +191,6 @@ public class LoginFbActivity extends AppCompatActivity implements View.OnClickLi
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            Toast.makeText(this, account.getEmail().toString(), Toast.LENGTH_SHORT).show();
-
             // Signed in successfully, show authenticated UI.
 //                updateUI(account);
         } catch (ApiException e) {
@@ -236,7 +207,7 @@ public class LoginFbActivity extends AppCompatActivity implements View.OnClickLi
         // the GoogleSignInAccount will be non-null.
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account!=null){
-            Toast.makeText(this, account.getEmail().toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, account.getEmail(), Toast.LENGTH_SHORT).show();
         }
 //        updateUI(account);
         super.onStart();
