@@ -22,6 +22,7 @@ public class DanhSachPlaylistAdapter extends RecyclerView.Adapter<DanhSachPlayli
     Context context;
     ArrayList<Playlist> arrayPlaylist;
 
+
     public DanhSachPlaylistAdapter(Context context, ArrayList<Playlist> arrayPlaylist) {
         this.context = context;
         this.arrayPlaylist = arrayPlaylist;
