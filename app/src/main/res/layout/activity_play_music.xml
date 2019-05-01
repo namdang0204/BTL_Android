@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
-    android:background="#B39C27B0"
+    android:background="@drawable/background"
     tools:context=".Activity.PlayMusicActivity">
 
     <android.support.v7.widget.Toolbar
@@ -46,6 +46,7 @@
 
             <SeekBar
                 android:id="@+id/seekbar_time_song"
+                android:onClick="clickButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="9" />
@@ -63,6 +64,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -72,16 +74,18 @@
 
             <ImageButton
                 android:id="@+id/imagebutton_shuffle"
+                android:onClick="clickButton"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginLeft="10dp"
                 android:background="@null"
                 android:scaleType="fitXY"
-                android:src="@drawable/icon_shuffle" />
+                android:src="@drawable/icon_random" />
 
             <ImageButton
                 android:id="@+id/imagebutton_preview"
+                android:onClick="clickButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginRight="15dp"
@@ -91,6 +95,7 @@
 
             <ImageButton
                 android:id="@+id/imagebutton_play"
+                android:onClick="clickButton"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginRight="15dp"
@@ -100,6 +105,7 @@
             <ImageButton
                 android:id="@+id/imagebutton_next"
                 android:src="@drawable/icon_next"
+                android:onClick="clickButton"
                 android:scaleType="fitXY"
                 android:background="@null"
                 android:layout_marginRight="20dp"
@@ -108,6 +114,7 @@
             <ImageButton
                 android:id="@+id/imagebutton_repeat"
                 android:src="@drawable/icon_repeat"
+                android:onClick="clickButton"
                 android:scaleType="fitXY"
                 android:background="@null"
                 android:layout_marginRight="15dp"
