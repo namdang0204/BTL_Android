@@ -55,10 +55,11 @@ public class DanhSachPlaylistAdapter extends RecyclerView.Adapter<DanhSachPlayli
         ImageView imgBackgroundPlaylist;
         TextView txtViewNamePlaylist;
 
+
         public ViewHolder(View itemView) {
             super(itemView);
-            imgBackgroundPlaylist = itemView.findViewById(R.id.imageview_background_playlist);
-            txtViewNamePlaylist = itemView.findViewById(R.id.textView_Name_Playlist);
+            imgBackgroundPlaylist = itemView.findViewById(R.id.imageview_danhsach_playlist);
+            txtViewNamePlaylist = itemView.findViewById(R.id.textview_name_danhsach_playlist);
         }
     }
 }

@@ -28,14 +28,14 @@
         android:lines="2"
         android:maxLines="2"
         android:ellipsize="end"
-        android:id="@+id/textview_danhsach_playlist"
+        android:id="@+id/textview_name_danhsach_playlist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    <TextView
-
-        android:textSize="15sp"
-        android:text="Various Artists"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <!--<TextView-->
+        <!--android:id="@+id/textview_name_singer_danhsach_playlist"-->
+        <!--android:textSize="15sp"-->
+        <!--android:text="Various Artists"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
 
 </LinearLayout>
