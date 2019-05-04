@@ -84,9 +84,11 @@ public class CommentActivity extends AppCompatActivity {
 
         // facebook comment widget including the article url
         String html = "<!doctype html> <html lang=\"en\"> <head></head> <body> " +
-                "<h1> jsjsjsjs </h1>"+
+                "<div id=\"fb-root\"></div>"+
                 "<script async defer crossorigin=\"anonymous\" src=\"https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2&appId=434590137274576&autoLogAppEvents=1\"></script>" +
-                "<div class=\"fb-comments\" data-href=\"" + postUrl + "\" data-width=\"\" data-numposts=\"5\"></div> </body> </html>";
+                "<div class=\"fb-comments\" data-href=\"" + postUrl + "\" data-width=\"\" data-numposts=\"5\"></div> " +
+                "<div class=\"fb-like\" data-href=\"" + postUrl + "\" data-width=\"\" data-layout=\"standard\" data-action=\"like\" data-size=\"small\" data-show-faces=\"true\" data-share=\"true\"></div>"+
+                "</body> </html>";
 
         mWebViewComments.loadDataWithBaseURL("http://www.nothing.com", html, "text/html", "UTF-8", null);
         mWebViewComments.setMinimumHeight(200);

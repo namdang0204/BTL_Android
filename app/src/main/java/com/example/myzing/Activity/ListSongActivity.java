@@ -85,7 +85,6 @@ public class ListSongActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
                 listSong = (ArrayList<Song>) response.body();
-                Toast.makeText(ListSongActivity.this, listSong.size()+"", Toast.LENGTH_SHORT).show();
                 listSongAdapter = new ListSongAdapter(ListSongActivity.this, listSong);
                 recyclerViewListSong.setLayoutManager(new LinearLayoutManager(ListSongActivity.this));
                 recyclerViewListSong.setAdapter(listSongAdapter);
@@ -98,27 +97,6 @@ public class ListSongActivity extends AppCompatActivity {
             }
         });
     }
-
-//    //get dữ liệu Song Playlist từ server gửi về
-//    private void getDataSongPlaylist(String idPlaylist) {
-//        DataService dataService = APIService.getDataService();
-//        Call<List<Song>> callbackListSong = dataService.GetListSongOfAdvertise(idPlaylist);
-//        callbackListSong.enqueue(new Callback<List<Song>>() {
-//            @Override
-//            public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
-//                listSong = (ArrayList<Song>) response.body();
-//                listSongAdapter = new ListSongAdapter(ListSongActivity.this, listSong);
-//                recyclerViewListSong.setLayoutManager(new LinearLayoutManager(ListSongActivity.this));
-//                recyclerViewListSong.setAdapter(listSongAdapter);
-//                evenClick();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<Song>> call, Throwable t) {
-//
-//            }
-//        });
-//    }
 
     private void setValueInView(String name, String image) {
         collapsingToolbarLayout.setTitle(name);

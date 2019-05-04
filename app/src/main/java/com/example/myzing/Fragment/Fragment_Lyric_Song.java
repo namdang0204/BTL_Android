@@ -20,7 +20,7 @@ public class Fragment_Lyric_Song extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_lyric_song, container, false);
         textViewLyricSong = view.findViewById(R.id.textview_lyric_song);
-        setLyricSong(PlayMusicActivity.listSong.get(PlayMusicActivity.position).getLyric());
+//        setLyricSong(PlayMusicActivity.listSong.get(PlayMusicActivity.position).getLyric());
         return view;
     }
 

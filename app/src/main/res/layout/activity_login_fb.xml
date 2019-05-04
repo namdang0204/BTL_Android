@@ -7,32 +7,58 @@
     android:orientation="vertical"
     tools:context=".Activity.LoginFbActivity">
 
+    <EditText
+        android:id="@+id/edittext_username"
+        android:hint="UserName"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/edittext_password"
+        android:hint="Password"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/button_login"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:text="Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <com.facebook.login.widget.LoginButton xmlns:facebook="http://schemas.android.com/apk/res-auto"
         android:id="@+id/login_fb_button"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
         facebook:com_facebook_login_text="Login with Facebook" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_google_button"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center" />
 
-    <Button
-        android:id="@+id/button_sign_out_google"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SignOutGoogle"
-        android:textAllCaps="false" />
+    <!--<Button-->
+        <!--android:id="@+id/button_sign_out_google"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="SignOutGoogle"-->
+        <!--android:textAllCaps="false" />-->
 
-    <com.facebook.login.widget.ProfilePictureView
-        android:id="@+id/profile_picture_view"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp" />
+    <!--<com.facebook.login.widget.ProfilePictureView-->
+        <!--android:id="@+id/profile_picture_view"-->
+        <!--android:layout_width="300dp"-->
+        <!--android:layout_height="300dp"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_marginTop="20dp" />-->
 </LinearLayout>

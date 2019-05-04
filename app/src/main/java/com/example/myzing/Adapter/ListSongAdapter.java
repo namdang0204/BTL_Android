@@ -17,7 +17,7 @@ import com.example.myzing.R;
 
 import java.util.ArrayList;
 
-public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.viewHolder>{
+public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHolder>{
     Context context;
     ArrayList<Song> listSong;
 
@@ -28,14 +28,14 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.viewHo
 
     @NonNull
     @Override
-    public viewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.dong_list_song, viewGroup, false);
-        return new viewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull viewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Song song = listSong.get(i);
         viewHolder.textViewIndex.setText(i+1+"");
         viewHolder.textViewNameSong.setText(song.getNameSong());
@@ -47,10 +47,10 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.viewHo
         return listSong.size();
     }
 
-    public class viewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView textViewIndex, textViewNameSong, textViewNameSinger;
         private ImageView imageViewLike;
-        public viewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewIndex = itemView.findViewById(R.id.textview_index_list_song);
             textViewNameSong = itemView.findViewById(R.id.textView_name_song);

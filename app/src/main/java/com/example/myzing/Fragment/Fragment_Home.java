@@ -19,4 +19,5 @@ public class Fragment_Home extends Fragment {
         view = inflater.inflate(R.layout.fragment_home, container, false);
         return view;
     }
+
 }

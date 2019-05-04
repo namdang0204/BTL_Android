@@ -1,6 +1,7 @@
 package com.example.myzing.Activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -18,18 +19,25 @@ public class MainActivity extends AppCompatActivity {
 
     ViewPager viewPager;
     TabLayout tabLayout;
+    MainViewPagerAdapter mainViewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        addControls();
+        mainViewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager());
+        anhXa();
         addFragment();
+
+        // Khong refresh lai fragment
+        int limit = (mainViewPagerAdapter.getCount() > 1 ? mainViewPagerAdapter.getCount() - 1 : 1);
+        viewPager.setOffscreenPageLimit(limit);
+
     }
 
     private void addFragment() {
-        MainViewPagerAdapter mainViewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager());
+
         mainViewPagerAdapter.addFragment(new Fragment_Home(), "Home");
         mainViewPagerAdapter.addFragment(new Fragment_MyMusic(), "MyMusic");
         mainViewPagerAdapter.addFragment(new Fragment_More(), "More");
@@ -40,9 +48,10 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(2).setIcon(R.drawable.icon_menu);
     }
 
-    private void addControls() {
+    private void anhXa() {
         viewPager = (ViewPager) findViewById(R.id.my_view_page);
         tabLayout = (TabLayout) findViewById(R.id.my_tablayout);
     }
+
 
 }

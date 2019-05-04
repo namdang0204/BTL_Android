@@ -18,7 +18,7 @@ public class Fragment_List_Song_Play extends Fragment {
 
     View view;
     RecyclerView recyclerViewListSongPlay;
-    PlaylistMusicAdapter playlistMusicAdapter;
+    public static PlaylistMusicAdapter playlistMusicAdapter;
 
     @Nullable
     @Override
@@ -30,7 +30,7 @@ public class Fragment_List_Song_Play extends Fragment {
             recyclerViewListSongPlay.setLayoutManager(new LinearLayoutManager(getActivity()));
             recyclerViewListSongPlay.setAdapter(playlistMusicAdapter);
         }
-
+        playlistMusicAdapter.notifyItemChanged(PlayMusicActivity.position);
         return view;
     }
 }

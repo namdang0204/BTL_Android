@@ -14,10 +14,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myzing.Adapter.PlaylistMusicAdapter;
 import com.example.myzing.Adapter.ViewPagerPlaylistMusicAdapter;
 import com.example.myzing.Fragment.Fragment_Disk_Music;
 import com.example.myzing.Fragment.Fragment_List_Song_Play;
@@ -43,11 +45,12 @@ public class PlayMusicActivity extends AppCompatActivity {
     private Fragment_Lyric_Song fragmentLyricSong;
     private MediaPlayer mediaPlayer;
     public static ArrayList<Song> listSong = new ArrayList<>();
-    public static int position = 0;
+    public static int position;
     public static boolean select = false;
     private boolean repeat = false;
     private boolean checkRandom = false;
     private boolean next = false;
+    RelativeLayout dongPlaylistMusic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,13 @@ public class PlayMusicActivity extends AppCompatActivity {
         getDataFromIntent();
         init();
         evenClick();
+        position = 0;
+
+        dongPlaylistMusic = (RelativeLayout) findViewById(R.id.dong_playlist_music);
+
+        // Khong refresh lai fragment
+        int limit = (viewPagerPlaylistMusicAdapter.getCount() > 1 ? viewPagerPlaylistMusicAdapter.getCount() - 1 : 1);
+        viewPagerPlayMusic.setOffscreenPageLimit(limit);
     }
 
     private void evenClick() {
@@ -68,6 +78,7 @@ public class PlayMusicActivity extends AppCompatActivity {
                 if (viewPagerPlaylistMusicAdapter.getItem(0) != null) {
                     if (listSong.size() > 0) {
                         fragmentDiskMusic.PlayMusic(listSong.get(position).getImageSong());
+                        fragmentLyricSong.setLyricSong(listSong.get(position).getLyric());
                         handler.removeCallbacks(this);
                     } else {
                         handler.postDelayed(this, 300);
@@ -135,6 +146,7 @@ public class PlayMusicActivity extends AppCompatActivity {
                 break;
             case R.id.imagebutton_next:
                 if (listSong.size() > 0) {
+
                     if (mediaPlayer.isPlaying() || mediaPlayer != null) {
                         mediaPlayer.stop();
                         mediaPlayer.release();
@@ -164,8 +176,9 @@ public class PlayMusicActivity extends AppCompatActivity {
                         }
 
                         //chu y..........................
-                       playMusic(listSong, position);
+                        playMusic(listSong, position);
                         updateTime();
+                        notifyListSongPlayChange();
                     }
 
                     imageButtonPreview.setClickable(false);
@@ -207,8 +220,9 @@ public class PlayMusicActivity extends AppCompatActivity {
                             position = index;
                         }
                         //chu y..........................
-                       playMusic(listSong, position);
+                        playMusic(listSong, position);
                         updateTime();
+                        notifyListSongPlayChange();
                     }
 
                     imageButtonPreview.setClickable(false);
@@ -226,6 +240,10 @@ public class PlayMusicActivity extends AppCompatActivity {
         }
     }
 
+    private void notifyListSongPlayChange() {
+        Fragment_List_Song_Play.playlistMusicAdapter.notifyDataSetChanged();
+    }
+
     private void getDataFromIntent() {
         Intent intent = getIntent();
         listSong.clear();
@@ -238,11 +256,11 @@ public class PlayMusicActivity extends AppCompatActivity {
             if (intent.hasExtra("listSong")) {
                 listSong = intent.getParcelableArrayListExtra("listSong");
             }
-
-            if(intent.hasExtra("test")){
-                Toast.makeText(this, intent.getStringExtra("test"), Toast.LENGTH_SHORT).show();
-//                playMusic(listSong, Integer.valueOf(intent.getStringExtra("test")));
-            }
+//
+//            if(intent.hasExtra("test")){
+//                Toast.makeText(this, intent.getStringExtra("test"), Toast.LENGTH_SHORT).show();
+////                playMusic(listSong, Integer.valueOf(intent.getStringExtra("test")));
+//            }
         }
     }
 
@@ -409,7 +427,7 @@ public class PlayMusicActivity extends AppCompatActivity {
         }, 1000);
     }
 
-    private void playMusic(List<Song> listSong, int position){
+    private void playMusic(List<Song> listSong, int position) {
 //        if (mediaPlayer.isPlaying() || mediaPlayer != null) {
 //            mediaPlayer.stop();
 //            mediaPlayer.release();
@@ -417,7 +435,9 @@ public class PlayMusicActivity extends AppCompatActivity {
 //        }
         new PlayMp3().execute(listSong.get(position).getLinkSong());
         fragmentDiskMusic.PlayMusic(listSong.get(position).getImageSong());
+        fragmentLyricSong.setLyricSong(listSong.get(position).getLyric());
         getSupportActionBar().setTitle(listSong.get(position).getNameSong());
         imageButtonPlay.setImageResource(R.drawable.icon_pause);
     }
+
 }

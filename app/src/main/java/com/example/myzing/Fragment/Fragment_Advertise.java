@@ -65,8 +65,10 @@ public class Fragment_Advertise extends Fragment {
                     public void run() {
                         currentItem = viewPager.getCurrentItem();
                         currentItem++;
-                        if(currentItem >= viewPager.getAdapter().getCount()){
-                            currentItem = 0;
+                        if(viewPager.getAdapter() != null){
+                            if(currentItem >= viewPager.getAdapter().getCount()){
+                                currentItem = 0;
+                            }
                         }
                         viewPager.setCurrentItem(currentItem, true);
                         handler.postDelayed(runnable, 5000);

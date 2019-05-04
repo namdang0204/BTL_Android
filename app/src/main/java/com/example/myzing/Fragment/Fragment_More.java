@@ -20,4 +20,5 @@ public class Fragment_More extends Fragment {
         view = inflater.inflate(R.layout.fragment_more, container, false);
         return view;
     }
+
 }

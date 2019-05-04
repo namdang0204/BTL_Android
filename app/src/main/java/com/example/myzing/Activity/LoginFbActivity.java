@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.myzing.Fragment.Fragment_Account;
@@ -43,7 +44,9 @@ import java.util.Arrays;
 public class LoginFbActivity extends AppCompatActivity implements View.OnClickListener {
     CallbackManager callbackManager;
     LoginButton loginButton;
-    GoogleSignInClient mGoogleSignInClient;
+    EditText editTextUserName, editTextPassword;
+    Button buttonLogin;
+    public static GoogleSignInClient mGoogleSignInClient;
     SignInButton signInButton;
     Button buttonSignOutGoogle;
     ProfilePictureView profilePictureView;
@@ -58,20 +61,28 @@ public class LoginFbActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_login_fb);
         callbackManager = CallbackManager.Factory.create();
         loginButton = (LoginButton) findViewById(R.id.login_fb_button);
+
         signInButton = (SignInButton) findViewById(R.id.sign_in_google_button);
-        buttonSignOutGoogle = (Button) findViewById(R.id.button_sign_out_google);
-        profilePictureView = (ProfilePictureView) findViewById(R.id.profile_picture_view);
+        editTextUserName = (EditText) findViewById(R.id.edittext_username);
+        editTextPassword = (EditText) findViewById(R.id.edittext_password);
+        buttonLogin = (Button) findViewById(R.id.button_login);
+        signInButton.setSize(SignInButton.SIZE_STANDARD);
+
+//        buttonSignOutGoogle = (Button) findViewById(R.id.button_sign_out_google);
+//        profilePictureView = (ProfilePictureView) findViewById(R.id.profile_picture_view);
         
         loginButton.setReadPermissions(Arrays.asList("public_profile", "email"));
         user = new User();
-        loginGoogle();
-
-        setLogin_Button();
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
         if (isLoggedIn) {
             LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile","user_birthday"));
         }
+
+        loginGoogle();
+
+        setLogin_ButtonFb();
+
 
     }
 
@@ -85,13 +96,8 @@ public class LoginFbActivity extends AppCompatActivity implements View.OnClickLi
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-
-        // Set the dimensions of the sign-in button.
-        signInButton = findViewById(R.id.sign_in_google_button);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
-
         signInButton.setOnClickListener(this);
-        buttonSignOutGoogle.setOnClickListener(this);
+//        buttonSignOutGoogle.setOnClickListener(this);
     }
 
     private void signIn() {
@@ -105,9 +111,9 @@ public class LoginFbActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.sign_in_google_button:
                 signIn();
                 break;
-            case R.id.button_sign_out_google:
-                signOutGoogle();
-                break;
+//            case R.id.button_sign_out_google:
+//                signOutGoogle();
+//                break;
         }
     }
 
@@ -121,7 +127,7 @@ public class LoginFbActivity extends AppCompatActivity implements View.OnClickLi
                 });
     }
 
-    private void setLogin_Button() {
+    private void setLogin_ButtonFb() {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
@@ -178,7 +184,7 @@ public class LoginFbActivity extends AppCompatActivity implements View.OnClickLi
         //Facebook
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
-//Google
+        //Google
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
@@ -192,22 +198,31 @@ public class LoginFbActivity extends AppCompatActivity implements View.OnClickLi
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             // Signed in successfully, show authenticated UI.
-//                updateUI(account);
+            user = new User();
+            user.setId(account.getId());
+            user.setUserName(account.getDisplayName());
+            user.setEmail(account.getEmail());
+            user.setImageUser(String.valueOf(account.getPhotoUrl()));
+            user.setPassword("google");
+
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("userGoogle", user);
+            Intent intent = new Intent();
+            intent.putExtras(bundle);
+            setResult(RESULT_OK, intent);
+            finish();
         } catch (ApiException e) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
-//                updateUI(null);
         }
     }
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         // Check for existing Google Sign In account, if the user is already signed in
         // the GoogleSignInAccount will be non-null.
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account!=null){
-            Toast.makeText(this, account.getEmail(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show();
         }
 //        updateUI(account);
         super.onStart();
