@@ -1,6 +1,7 @@
 package com.example.myzing.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.myzing.Activity.ListSongActivity;
 import com.example.myzing.Model.Playlist;
 import com.example.myzing.R;
 import com.squareup.picasso.Picasso;
@@ -56,10 +59,19 @@ public class DanhSachPlaylistAdapter extends RecyclerView.Adapter<DanhSachPlayli
         TextView txtViewNamePlaylist;
 
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             imgBackgroundPlaylist = itemView.findViewById(R.id.imageview_danhsach_playlist);
             txtViewNamePlaylist = itemView.findViewById(R.id.textview_name_danhsach_playlist);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, ListSongActivity.class);
+                    intent.putExtra("itemPlaylist", arrayPlaylist.get(getPosition()));
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

@@ -70,16 +70,16 @@ public class ListSongActivity extends AppCompatActivity {
             getDataAdvertise("playlist",playlist.getId());
         }
     }
-    //get dữ liệu Advertise từ server gửi về
-    private void getDataAdvertise(String title, String idAdvertise) {
+    //get dữ liệu từ server gửi về
+    private void getDataAdvertise(String title, String id) {
         DataService dataService = APIService.getDataService();
         Call<List<Song>> callbackListSong = null;
         if(title.equalsIgnoreCase("advertise")){
-            callbackListSong = dataService.GetListSongOfAdvertise(idAdvertise);
+            callbackListSong = dataService.GetListSongOfAdvertise(id);
         }
 
         if(title.equalsIgnoreCase("playlist")){
-            callbackListSong = dataService.GetListSongOfPlaylist(idAdvertise);
+            callbackListSong = dataService.GetListSongOfPlaylist(id);
         }
         callbackListSong.enqueue(new Callback<List<Song>>() {
             @Override
