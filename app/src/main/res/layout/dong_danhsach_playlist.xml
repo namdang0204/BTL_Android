@@ -22,7 +22,7 @@
     <TextView
 
         android:textSize="15sp"
-        android:text="Nhac hot"
+        android:text="Nhac Hot"
         android:layout_gravity="left"
         android:maxWidth="200dp"
         android:lines="2"

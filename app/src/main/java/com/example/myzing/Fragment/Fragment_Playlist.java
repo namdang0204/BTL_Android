@@ -53,7 +53,7 @@ public class Fragment_Playlist extends Fragment {
         tv_More_Playlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(getActivity(), DanhSachPlaylistActivity.class);
+                Intent intent = new Intent(getActivity(), DanhSachPlaylistActivity.class);
                 intent.putExtra("title", tv_Title_Playlist.getText());
                 startActivity(intent);
             }
@@ -76,7 +76,7 @@ public class Fragment_Playlist extends Fragment {
                 lv_Playlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Log.d("aaa","oke");
+                        Log.d("aaa", "oke");
                     }
                 });
             }
@@ -101,7 +101,7 @@ public class Fragment_Playlist extends Fragment {
         for (int i = 0; i < listAdapter.getCount(); i++) {
             View listItem = listAdapter.getView(i, null, listView);
 
-            if(listItem != null){
+            if (listItem != null) {
                 // This next line is needed before you call measure or else you won't get measured height at all. The listitem needs to be drawn first to know the height.
                 listItem.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
                 listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);

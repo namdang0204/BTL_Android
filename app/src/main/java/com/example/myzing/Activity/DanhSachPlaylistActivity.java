@@ -33,10 +33,10 @@ public class DanhSachPlaylistActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_danh_sach_playlist);
         anhxa();
-        init();
         GetData();
+        init();
     }
-//
+
     private void GetData() {
         DataService dataService= APIService.getDataService();
         Call<List<Playlist>> listCall= dataService.GetDanhSachPlaylist();
@@ -44,7 +44,7 @@ public class DanhSachPlaylistActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Playlist>> call, Response<List<Playlist>> response) {
                 ArrayList<Playlist> arrayPlaylist = (ArrayList<Playlist>) response.body();
-//               Log.d("aaa", arrayPlaylist.get(0).getNamePlaylist());
+
                 danhSachPlaylistAdapter = new DanhSachPlaylistAdapter(DanhSachPlaylistActivity.this,arrayPlaylist);
                 recyclerView_Danhsach_Playlist.setLayoutManager(new GridLayoutManager(DanhSachPlaylistActivity.this,2));
                 recyclerView_Danhsach_Playlist.setAdapter(danhSachPlaylistAdapter);
