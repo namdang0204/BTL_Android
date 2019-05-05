@@ -15,7 +15,7 @@ import retrofit2.http.POST;
 
 public interface DataService {
 
-    @GET ("getDataAdvertise.php")
+    @GET("getDataAdvertise.php")
     Call<List<Advertise>> GetDataAdvertise();
 
     @GET("getPlaylist.php")
@@ -38,4 +38,8 @@ public interface DataService {
     @FormUrlEncoded
     @POST("getListSong.php")
     Call<List<Song>> GetListSongGoiY(@Field("listSongGoiY") String stringBatKy);
+
+    @FormUrlEncoded
+    @POST("getListSong.php")
+    Call<List<Song>> GetAllListSongGoiY(@Field("allListSongGoiY") String stringBatKy);
 }

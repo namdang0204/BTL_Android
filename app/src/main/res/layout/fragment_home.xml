@@ -1,48 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:scrollbars="none">
+
     <LinearLayout
 
         android:id="@+id/linearlayout"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <fragment
-            android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-            android:name="com.example.myzing.Fragment.Fragment_Advertise"
+        <fragment
             android:id="@+id/fragmentBanner"
+            android:name="com.example.myzing.Fragment.Fragment_Advertise"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp">
 
         </fragment>
+
         <fragment
-            android:layout_margin="10dp"
+
+            android:id="@+id/fragment_Playlist"
 
             android:name="com.example.myzing.Fragment.Fragment_Playlist"
-            android:layout_marginTop="5dp"
-            android:id="@+id/fragment_Playlist"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp">
 
         </fragment>
+
         <fragment
-            android:layout_margin="10dp"
+            android:id="@+id/fragment_topic_genre"
 
             android:name="com.example.myzing.Fragment.Fragment_Topic_Genre"
-            android:id="@+id/fragment_topic_genre"
-            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></fragment>
-    <fragment
-        android:name="com.example.myzing.Fragment.Fragment_GoiY"
-        android:layout_margin="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></fragment>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"></fragment>
+
+        <fragment
+            android:name="com.example.myzing.Fragment.Fragment_GoiY"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"></fragment>
     </LinearLayout>
 
 </ScrollView>
