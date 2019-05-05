@@ -38,6 +38,13 @@ public class Song implements Parcelable {
     @Expose
     private String linkZing;
 
+    public Song(String nameSong, String linkSong, String singer) {
+        this.nameSong = nameSong;
+        this.linkSong = linkSong;
+        this.singer = singer;
+//        this.imageSong = imageSong;
+    }
+
     protected Song(Parcel in) {
         idSong = in.readString();
         albumId = in.readString();

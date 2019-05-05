@@ -14,10 +14,12 @@ import com.example.myzing.R;
 public class Fragment_MyMusic extends Fragment {
 
     View view;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
          view = inflater.inflate(R.layout.fragment_my_music, container, false);
          return view;
     }
+
 }

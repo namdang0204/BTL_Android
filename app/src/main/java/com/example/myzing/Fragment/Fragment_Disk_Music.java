@@ -120,7 +120,7 @@ public class Fragment_Disk_Music extends Fragment {
 //    }
 
     public void PlayMusic(String imageSong) {
-        Picasso.with(getContext()).load(imageSong).into(circleImageViewDiskMusic);
+        Picasso.with(getContext()).load(imageSong).placeholder(R.drawable.disk_music_off).into(circleImageViewDiskMusic);
         objectAnimator.start();
     }
 }

@@ -11,15 +11,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.myzing.Adapter.PlaylistMusicAdapter;
 import com.example.myzing.Adapter.ViewPagerPlaylistMusicAdapter;
 import com.example.myzing.Fragment.Fragment_Disk_Music;
 import com.example.myzing.Fragment.Fragment_List_Song_Play;
@@ -43,7 +40,7 @@ public class PlayMusicActivity extends AppCompatActivity {
     private Fragment_List_Song_Play fragmentListSongPlay;
     private Fragment_Disk_Music fragmentDiskMusic;
     private Fragment_Lyric_Song fragmentLyricSong;
-    private MediaPlayer mediaPlayer;
+    public static MediaPlayer mediaPlayer;
     public static ArrayList<Song> listSong = new ArrayList<>();
     public static int position;
     public static boolean select = false;
@@ -241,7 +238,7 @@ public class PlayMusicActivity extends AppCompatActivity {
     }
 
     private void notifyListSongPlayChange() {
-        Fragment_List_Song_Play.playlistMusicAdapter.notifyDataSetChanged();
+        Fragment_List_Song_Play.listSongPlayAdapter.notifyDataSetChanged();
     }
 
     private void getDataFromIntent() {
@@ -301,7 +298,6 @@ public class PlayMusicActivity extends AppCompatActivity {
 
         if (listSong.size() > 0) {
             new PlayMp3().execute(listSong.get(0).getLinkSong());
-//            fragmentDiskMusic.PlayMusic(listSong.get(0).getImageSong());
             getSupportActionBar().setTitle(listSong.get(0).getNameSong());
             imageButtonPlay.setImageResource(R.drawable.icon_pause);
         }
@@ -406,6 +402,7 @@ public class PlayMusicActivity extends AppCompatActivity {
                         }
                         //chu y..........................
                         playMusic(listSong, position);
+                        notifyListSongPlayChange();
 
                         imageButtonPreview.setClickable(false);
                         imageButtonNext.setClickable(false);

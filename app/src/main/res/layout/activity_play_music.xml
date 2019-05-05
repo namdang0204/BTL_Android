@@ -75,8 +75,8 @@
             <ImageButton
                 android:id="@+id/imagebutton_shuffle"
                 android:onClick="clickButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginLeft="10dp"
                 android:background="@null"
@@ -118,8 +118,8 @@
                 android:scaleType="fitXY"
                 android:background="@null"
                 android:layout_marginRight="15dp"
-                android:layout_width="40dp"
-                android:layout_height="40dp" />
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

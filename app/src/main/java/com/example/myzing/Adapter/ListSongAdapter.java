@@ -60,6 +60,11 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, PlayMusicActivity.class);
+                    if(PlayMusicActivity.mediaPlayer != null && PlayMusicActivity.mediaPlayer.isPlaying()){
+                        PlayMusicActivity.mediaPlayer.stop();
+                        PlayMusicActivity.mediaPlayer.release();
+                        PlayMusicActivity.mediaPlayer = null;
+                    }
                     intent.putExtra("song", listSong.get(getPosition()));
                     context.startActivity(intent);
                 }

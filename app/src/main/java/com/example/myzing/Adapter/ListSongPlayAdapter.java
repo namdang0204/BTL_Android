@@ -1,22 +1,15 @@
 package com.example.myzing.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.myzing.Activity.PlayMusicActivity;
-import com.example.myzing.Fragment.Fragment_List_Song_Play;
 import com.example.myzing.Model.Song;
 import com.example.myzing.R;
 
@@ -24,12 +17,12 @@ import java.util.ArrayList;
 
 import pl.droidsonroids.gif.GifImageView;
 
-public class PlaylistMusicAdapter extends RecyclerView.Adapter<PlaylistMusicAdapter.ViewHolder> {
+public class ListSongPlayAdapter extends RecyclerView.Adapter<ListSongPlayAdapter.ViewHolder> {
 
     Context context;
     ArrayList<Song> listSong;
 
-    public PlaylistMusicAdapter(Context context, ArrayList<Song> listSong) {
+    public ListSongPlayAdapter(Context context, ArrayList<Song> listSong) {
         this.context = context;
         this.listSong = listSong;
     }

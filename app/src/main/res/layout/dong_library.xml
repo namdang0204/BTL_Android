@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageview_icon_library"
+        android:background="@color/mauXamNhat"
+        android:layout_marginRight="10dp"
+        android:layout_centerVertical="true"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+
+    <TextView
+        android:id="@+id/tv_name_library"
+        android:layout_toRightOf="@id/imageview_icon_library"
+        android:textColor="@color/mauden"
+        android:textSize="16dp"
+        android:text="Name Library"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_number_of_one_library"
+        android:text="100"
+        android:layout_toRightOf="@id/imageview_icon_library"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/tv_name_library"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/icon_next_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
