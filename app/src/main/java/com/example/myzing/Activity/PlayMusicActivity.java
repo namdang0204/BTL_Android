@@ -11,11 +11,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myzing.Adapter.ViewPagerPlaylistMusicAdapter;
 import com.example.myzing.Fragment.Fragment_Disk_Music;
@@ -47,7 +49,10 @@ public class PlayMusicActivity extends AppCompatActivity {
     private boolean repeat = false;
     private boolean checkRandom = false;
     private boolean next = false;
+    private boolean checkList = false;
     RelativeLayout dongPlaylistMusic;
+
+    Song song;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +60,10 @@ public class PlayMusicActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play_music);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+        position = 0;
         getDataFromIntent();
         init();
         evenClick();
-        position = 0;
 
         dongPlaylistMusic = (RelativeLayout) findViewById(R.id.dong_playlist_music);
 
@@ -242,23 +247,35 @@ public class PlayMusicActivity extends AppCompatActivity {
     }
 
     private void getDataFromIntent() {
-        Intent intent = getIntent();
+//        Intent intent = getIntent();
+        Bundle bundle = getIntent().getExtras();
         listSong.clear();
-        if (intent != null) {
-            if (intent.hasExtra("song")) {
-                Song song = (Song) intent.getParcelableExtra("song");
-                listSong.add(song);
+        if (bundle != null) {
+            if (bundle.getParcelableArrayList("listSongOn") != null) {
+                listSong = bundle.getParcelableArrayList("listSongOn");
+                position = bundle.getInt("position");
+            } else if (bundle.getParcelableArrayList("listSongOff") != null) {
+                listSong = bundle.getParcelableArrayList("listSongOff");
+                position = bundle.getInt("position");
             }
-
-            if (intent.hasExtra("listSong")) {
-                listSong = intent.getParcelableArrayListExtra("listSong");
-            }
-//
-//            if(intent.hasExtra("test")){
-//                Toast.makeText(this, intent.getStringExtra("test"), Toast.LENGTH_SHORT).show();
-////                playMusic(listSong, Integer.valueOf(intent.getStringExtra("test")));
+//            if (intent.hasExtra("song")) {
+//                Song song = (Song) intent.getParcelableExtra("song");
+//                listSong.add(song);
 //            }
+//
+//            if (intent.hasExtra("listSong")) {
+//                checkList = true;
+//                listSong = intent.getParcelableArrayListExtra("listSong");
+//            }
+
         }
+//
+//        if (bundle != null && bundle.getParcelable("songOff") != null) {
+//            checkList = false;
+//            song = (Song) bundle.getParcelable("songOff");
+//            listSong = bundle.getParcelableArrayList("listSongOff");
+//            position = bundle.getInt("position");
+//        }
     }
 
     private void init() {
@@ -295,10 +312,14 @@ public class PlayMusicActivity extends AppCompatActivity {
         viewPagerPlayMusic.setCurrentItem(1);
 
         fragmentDiskMusic = (Fragment_Disk_Music) viewPagerPlaylistMusicAdapter.getItem(1);
-
+//        if(song!=null){
+//            new PlayMp3().execute(song.getLinkSong());
+//            getSupportActionBar().setTitle(song.getNameSong());
+//            imageButtonPlay.setImageResource(R.drawable.icon_pause);
+//        }
         if (listSong.size() > 0) {
-            new PlayMp3().execute(listSong.get(0).getLinkSong());
-            getSupportActionBar().setTitle(listSong.get(0).getNameSong());
+            new PlayMp3().execute(listSong.get(position).getLinkSong());
+            getSupportActionBar().setTitle(listSong.get(position).getNameSong());
             imageButtonPlay.setImageResource(R.drawable.icon_pause);
         }
     }

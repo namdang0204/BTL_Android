@@ -2,6 +2,7 @@ package com.example.myzing.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -65,7 +66,11 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
                         PlayMusicActivity.mediaPlayer.release();
                         PlayMusicActivity.mediaPlayer = null;
                     }
-                    intent.putExtra("song", listSong.get(getPosition()));
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelableArrayList("listSongOn", listSong);
+                    bundle.putInt("position", getPosition());
+//                    intent.putExtra("listSongOn", listSong.get(getPosition()));
+                    intent.putExtras(bundle);
                     context.startActivity(intent);
                 }
             });

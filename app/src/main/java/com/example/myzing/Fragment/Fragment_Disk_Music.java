@@ -56,7 +56,7 @@ public class Fragment_Disk_Music extends Fragment {
         objectAnimator.setRepeatMode(ValueAnimator.RESTART);
         objectAnimator.setInterpolator(new LinearInterpolator());
 
-        evenClick();
+//        evenClick();
         return view;
     }
 
@@ -122,5 +122,11 @@ public class Fragment_Disk_Music extends Fragment {
     public void PlayMusic(String imageSong) {
         Picasso.with(getContext()).load(imageSong).placeholder(R.drawable.disk_music_off).into(circleImageViewDiskMusic);
         objectAnimator.start();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        evenClick();
     }
 }

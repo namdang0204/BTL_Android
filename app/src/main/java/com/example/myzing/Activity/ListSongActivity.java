@@ -158,7 +158,10 @@ public class ListSongActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListSongActivity.this, PlayMusicActivity.class);
-                intent.putExtra("listSong", listSong);
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("listSongOn", listSong);
+                bundle.putInt("position", 0);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });

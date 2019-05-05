@@ -6,7 +6,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleimageview_disk_music"
-        android:layout_centerInParent="true"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/ic_launcher_background"
         android:layout_width="250dp"
         android:layout_height="250dp" />
@@ -15,6 +16,7 @@
         android:id="@+id/linnerlayout_disk"
         android:layout_below="@+id/circleimageview_disk_music"
         android:padding="10dp"
+        android:layout_marginTop="40dp"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
