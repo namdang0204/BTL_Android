@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:textStyle="bold"
+        android:text="CHỦ ĐỀ VÀ THỂ LOẠI "
+        android:id="@+id/txtview_title_topic_genre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <HorizontalScrollView
+
+        android:id="@+id/horizontal_scrollview"
+        android:layout_below="@+id/txtview_title_topic_genre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/txtview_viewmore_topic_genre"
+        android:layout_marginTop="20dp"
+        android:textColor="#C575E7"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:background="#E0E2F1"
+        android:textSize="10sp"
+        android:text="View more"
+        android:layout_below="@+id/recycleview_topic_genre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

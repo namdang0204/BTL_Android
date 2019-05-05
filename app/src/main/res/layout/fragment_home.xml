@@ -25,6 +25,12 @@
             android:layout_height="wrap_content">
 
         </fragment>
+        <fragment
+            android:name="com.example.myzing.Fragment.Fragment_Topic_Genre"
+            android:id="@+id/fragment_topic_genre"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></fragment>
 
     </LinearLayout>
 

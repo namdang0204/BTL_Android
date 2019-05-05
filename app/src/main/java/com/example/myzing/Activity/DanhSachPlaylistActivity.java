@@ -44,6 +44,7 @@ public class DanhSachPlaylistActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Playlist>> call, Response<List<Playlist>> response) {
                 ArrayList<Playlist> arrayPlaylist = (ArrayList<Playlist>) response.body();
+//                Log.d("aaa", arrayPlaylist.get(0).getNamePlaylist());
 
                 danhSachPlaylistAdapter = new DanhSachPlaylistAdapter(DanhSachPlaylistActivity.this,arrayPlaylist);
                 recyclerView_Danhsach_Playlist.setLayoutManager(new GridLayoutManager(DanhSachPlaylistActivity.this,2));
