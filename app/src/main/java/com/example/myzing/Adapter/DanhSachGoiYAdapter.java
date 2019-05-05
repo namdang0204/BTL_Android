@@ -16,13 +16,13 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class GoiYAdapter extends RecyclerView.Adapter<GoiYAdapter.ViewHolder> {
+public class DanhSachGoiYAdapter extends RecyclerView.Adapter<DanhSachGoiYAdapter.ViewHolder> {
     Context context;
-    ArrayList<Song> arraySongGoiY;
+    ArrayList<Song> arrayListSongGoiY;
 
-    public GoiYAdapter(Context context, ArrayList<Song> arraySongGoiY) {
+    public DanhSachGoiYAdapter(Context context, ArrayList<Song> arrayListSongGoiY) {
         this.context = context;
-        this.arraySongGoiY = arraySongGoiY;
+        this.arrayListSongGoiY = arrayListSongGoiY;
     }
 
     @NonNull
@@ -31,21 +31,22 @@ public class GoiYAdapter extends RecyclerView.Adapter<GoiYAdapter.ViewHolder> {
         LayoutInflater layoutInflater= LayoutInflater.from(context);
         View  view= layoutInflater.inflate(R.layout.dong_goiy,viewGroup, false );
         return new ViewHolder(view);
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Song song=arraySongGoiY.get(i);
+        Song song=arrayListSongGoiY.get(i);
         viewHolder.txtView_NameSong_GoiY.setText(song.getNameSong());
         viewHolder.txtView_NameSinger_GoiY.setText(song.getSinger());
         Picasso.with(context).load(song.getImageSong()).into(viewHolder.imgView_image_GoiY);
-
     }
 
     @Override
     public int getItemCount() {
-        return arraySongGoiY.size();
+        return arrayListSongGoiY.size();
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView txtView_NameSong_GoiY, txtView_NameSinger_GoiY, txtView_Viewmore_GoiY;
