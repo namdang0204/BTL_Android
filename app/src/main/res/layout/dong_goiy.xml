@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/imageview_image_goiy"
+        android:background="#7ED3E9"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+    <TextView
+        android:textColor="#141313"
+        android:text="Thà đừng nói ra"
+        android:textSize="20sp"
+        android:id="@+id/textview_name_song_goiy"
+        android:layout_toRightOf="@+id/imageview_image_goiy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/textview_name_singer_goiy"
+        android:textColor="#C1C1F1"
+        android:textSize="15sp"
+        android:text="Minh Vương M4U"
+        android:layout_below="@+id/textview_name_song_goiy"
+        android:layout_toRightOf="@+id/imageview_image_goiy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ImageButton
+        android:id="@+id/image_button_goiy"
+        android:background="@null"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/icon_menu2"
+        android:layout_width="20dp"
+        android:layout_height="30dp" />
+
+</RelativeLayout>
