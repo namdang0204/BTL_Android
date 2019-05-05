@@ -15,6 +15,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycleview_list_goiy"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar_list_goi_y"></android.support.v7.widget.RecyclerView>

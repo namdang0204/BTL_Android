@@ -17,14 +17,13 @@
         android:layout_below="@+id/textview_goi_y"
         android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
     <TextView
-        android:textSize="10sp"
+        android:textSize="13sp"
         android:padding="10dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:id="@+id/textview_viewmore_goiy"
         android:layout_below="@+id/recycleview_goiy"
-        android:textColor="#C575E7"
-        android:background="#E0E2F1"
+        android:textColor="@color/mautim"
         android:text="View more"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

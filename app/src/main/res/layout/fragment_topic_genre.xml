@@ -12,14 +12,13 @@
         android:textStyle="bold" />
 
     <TextView
-        android:textSize="10sp"
+        android:textSize="13sp"
         android:id="@+id/txtview_viewmore_topic_genre"
-        android:layout_marginRight="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:text="View more"
-        android:textColor="#C575E7" />
+        android:textColor="@color/mautim" />
 
     <HorizontalScrollView
         android:id="@+id/horizontal_scrollview"

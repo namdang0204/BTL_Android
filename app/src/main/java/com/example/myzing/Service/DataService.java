@@ -24,6 +24,9 @@ public interface DataService {
     @GET("getTopic_Genre.php")
     Call<TopicGenre> GetTopicGenre();
 
+    @GET("getAllTopic_Genre.php")
+    Call<TopicGenre> GetAllTopicGenre();
+
     @FormUrlEncoded
     @POST("getListSong.php")
     Call<List<Song>> GetListSongOfAdvertise(@Field("idAdvertise") String idAdvertise);

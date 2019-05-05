@@ -1,6 +1,8 @@
 package com.example.myzing.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myzing.Activity.PlayMusicActivity;
 import com.example.myzing.Model.Song;
 import com.example.myzing.R;
 import com.squareup.picasso.Picasso;
@@ -59,6 +62,23 @@ public class DanhSachGoiYAdapter extends RecyclerView.Adapter<DanhSachGoiYAdapte
             txtView_NameSinger_GoiY= itemView.findViewById(R.id.textview_name_singer_goiy);
             imgButton_GoiY= itemView.findViewById(R.id.image_button_goiy);
             imgView_image_GoiY= itemView.findViewById(R.id.imageview_image_goiy);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, PlayMusicActivity.class);
+                    if(PlayMusicActivity.mediaPlayer != null && PlayMusicActivity.mediaPlayer.isPlaying()){
+                        PlayMusicActivity.mediaPlayer.stop();
+                        PlayMusicActivity.mediaPlayer.release();
+                        PlayMusicActivity.mediaPlayer = null;
+                    }
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelableArrayList("listSongOn", arrayListSongGoiY);
+                    bundle.putInt("position", getPosition());
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

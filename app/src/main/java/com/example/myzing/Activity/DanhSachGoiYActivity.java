@@ -37,10 +37,6 @@ public class DanhSachGoiYActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
     private void getData() {
         DataService dataService= APIService.getDataService();
         Call<List<Song>> listCall= dataService.GetAllListSongGoiY("AllSong");
@@ -48,8 +44,8 @@ public class DanhSachGoiYActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
                 ArrayList<Song> listSong= (ArrayList<Song>) response.body();
-                danhSachGoiYAdapter= new DanhSachGoiYAdapter(getApplication(),listSong);
-                recyclerView_List_GoiY.setLayoutManager(new LinearLayoutManager(getApplication()));
+                danhSachGoiYAdapter= new DanhSachGoiYAdapter(DanhSachGoiYActivity.this,listSong);
+                recyclerView_List_GoiY.setLayoutManager(new LinearLayoutManager(DanhSachGoiYActivity.this));
                 recyclerView_List_GoiY.setAdapter(danhSachGoiYAdapter);
 
             }
