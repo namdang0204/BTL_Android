@@ -45,7 +45,7 @@ public class Fragment_Topic_Genre extends Fragment {
 
     private void getData() {
         DataService dataService= APIService.getDataService();
-        List<TopicGenre>
+//        List<TopicGenre>
     }
 
 

@@ -18,6 +18,7 @@
         <activity android:name=".Activity.ListSongActivity" />
         <activity android:name=".Activity.LoginFbActivity" />
         <activity android:name=".Activity.DanhSachPlaylistActivity" />
+        <activity android:name=".Activity.DanhSachTopicGenreActivity"/>
         <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
