@@ -22,7 +22,7 @@ public interface DataService {
     Call<List<Playlist>> GetPlaylist();
 
     @GET("getTopic_Genre.php")
-    Call<List<TopicGenre>> GetTopicGenre();
+    Call<TopicGenre> GetTopicGenre();
 
     @FormUrlEncoded
     @POST("getListSong.php")

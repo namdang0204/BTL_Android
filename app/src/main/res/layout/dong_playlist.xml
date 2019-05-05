@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp">
 
     <ImageView
         android:id="@+id/imageview_background_playlist"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
         android:scaleType="fitXY" />
     <View
-        
         android:background="@drawable/custom_background_advertise"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="100dp" />
 
@@ -34,9 +28,9 @@
         android:text="ahfjhdjhf"
         android:layout_alignBottom="@id/imageview_playlist"
         android:layout_toRightOf="@+id/imageview_playlist"
-        android:layout_marginLeft="13dp"
+        android:layout_marginLeft="14dp"
         android:textStyle="bold"
-        android:textColor="#ffff"
+        android:textColor="@color/mauTrang"
         android:id="@+id/textView_Name_Playlist"
         android:maxLines="1"
         android:layout_marginRight="50dp"

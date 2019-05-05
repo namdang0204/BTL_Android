@@ -12,6 +12,7 @@
     <HorizontalScrollView
         android:id="@+id/horizontal_scrollview"
         android:layout_below="@+id/txtview_title_topic_genre"
+        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></HorizontalScrollView>
 
