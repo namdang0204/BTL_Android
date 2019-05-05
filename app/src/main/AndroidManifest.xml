@@ -12,13 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.ListSongOffActivity"></activity>
+        <activity android:name=".Activity.DanhSachGoiYActivity"></activity>
+        <activity android:name=".Activity.ListSongOffActivity" />
         <activity android:name=".Activity.CommentActivity" /> <!-- <activity android:name=".Activity.MainActivity"></activity> -->
         <activity android:name=".Activity.PlayMusicActivity" />
         <activity android:name=".Activity.ListSongActivity" />
         <activity android:name=".Activity.LoginFbActivity" />
         <activity android:name=".Activity.DanhSachPlaylistActivity" />
-        <activity android:name=".Activity.DanhSachTopicGenreActivity"/>
+        <activity android:name=".Activity.DanhSachTopicGenreActivity" />
         <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

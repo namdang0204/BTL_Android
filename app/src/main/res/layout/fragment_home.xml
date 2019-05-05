@@ -11,6 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <fragment
+            android:layout_margin="10dp"
+
             android:name="com.example.myzing.Fragment.Fragment_Advertise"
             android:id="@+id/fragmentBanner"
             android:layout_width="match_parent"
@@ -18,6 +20,8 @@
 
         </fragment>
         <fragment
+            android:layout_margin="10dp"
+
             android:name="com.example.myzing.Fragment.Fragment_Playlist"
             android:layout_marginTop="5dp"
             android:id="@+id/fragment_Playlist"
@@ -26,12 +30,19 @@
 
         </fragment>
         <fragment
+            android:layout_margin="10dp"
+
             android:name="com.example.myzing.Fragment.Fragment_Topic_Genre"
             android:id="@+id/fragment_topic_genre"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></fragment>
-
+    <fragment
+        android:name="com.example.myzing.Fragment.Fragment_GoiY"
+        android:layout_margin="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></fragment>
     </LinearLayout>
 
 </ScrollView>
