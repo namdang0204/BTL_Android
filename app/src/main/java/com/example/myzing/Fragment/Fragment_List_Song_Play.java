@@ -30,6 +30,7 @@ public class Fragment_List_Song_Play extends Fragment {
             recyclerViewListSongPlay.setLayoutManager(new LinearLayoutManager(getActivity()));
             recyclerViewListSongPlay.setAdapter(listSongPlayAdapter);
         }
+        recyclerViewListSongPlay.scrollToPosition(PlayMusicActivity.position);
 //        listSongPlayAdapter.notifyItemChanged(PlayMusicActivity.position);
         return view;
     }

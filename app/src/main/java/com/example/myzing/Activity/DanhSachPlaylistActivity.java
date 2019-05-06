@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.myzing.Adapter.DanhSachPlaylistAdapter;
 import com.example.myzing.Model.Playlist;
@@ -39,7 +37,7 @@ public class DanhSachPlaylistActivity extends AppCompatActivity {
 
     private void GetData() {
         DataService dataService= APIService.getDataService();
-        Call<List<Playlist>> listCall= dataService.GetDanhSachPlaylist();
+        Call<List<Playlist>> listCall= dataService.GetAllPlaylist();
         listCall.enqueue(new Callback<List<Playlist>>() {
             @Override
             public void onResponse(Call<List<Playlist>> call, Response<List<Playlist>> response) {
