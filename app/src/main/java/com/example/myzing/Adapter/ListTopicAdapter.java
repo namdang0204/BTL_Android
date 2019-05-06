@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myzing.Activity.List_Playlist_OfTopic_Activity;
 import com.example.myzing.Activity.PlayMusicActivity;
 import com.example.myzing.Model.Topic;
 import com.example.myzing.R;
@@ -55,6 +56,15 @@ public class ListTopicAdapter extends RecyclerView.Adapter<ListTopicAdapter.View
             super(itemView);
             textViewNameTopic = itemView.findViewById(R.id.tv_name_topic_genre);
             imageViewTopic = itemView.findViewById(R.id.imageview_topic_genre);
+            imageViewTopic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent= new Intent(context, List_Playlist_OfTopic_Activity.class);
+                    intent.putExtra("topic", arrayListTopic.get(getPosition()));
+                    context.startActivity(intent);
+                }
+
+            });
 
         }
     }

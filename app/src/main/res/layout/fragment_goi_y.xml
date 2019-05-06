@@ -24,7 +24,7 @@
         android:id="@+id/textview_viewmore_goiy"
         android:layout_below="@+id/recycleview_goiy"
         android:textColor="@color/mautim"
-        android:text="View more"
+        android:text="Xem thêm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </RelativeLayout>

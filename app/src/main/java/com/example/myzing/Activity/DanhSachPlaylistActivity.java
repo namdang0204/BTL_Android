@@ -58,14 +58,14 @@ public class DanhSachPlaylistActivity extends AppCompatActivity {
 
 
     private void init() {
-        String title = "";
-        Intent intent = getIntent();
-        if(intent.hasExtra("title")){
-            title = intent.getStringExtra("title");
-        }
+//        String title = "";
+//        Intent intent = getIntent();
+//        if(intent.hasExtra("title")){
+//            title = intent.getStringExtra("title");
+//        }
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(title);
+        getSupportActionBar().setTitle("Playlists");
         toolbar.setTitleTextColor(getResources().getColor(R.color.mautim));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

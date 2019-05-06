@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.example.myzing.Activity.PlayMusicActivity;
@@ -76,6 +77,18 @@ public class GoiYAdapter extends RecyclerView.Adapter<GoiYAdapter.ViewHolder> {
                     bundle.putInt("position", getPosition());
                     intent.putExtras(bundle);
                     context.startActivity(intent);
+                }
+            });
+            imgButton_GoiY.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showPopupMenu();
+                }
+
+                private void showPopupMenu() {
+                    PopupMenu popupMenu= new PopupMenu(context, imgButton_GoiY);
+                    popupMenu.getMenuInflater().inflate(R.menu.menu_goi_y, popupMenu.getMenu());
+                    popupMenu.show();
                 }
             });
         }

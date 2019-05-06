@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.DanhSachGoiYActivity"></activity>
+        <activity android:name=".Activity.ListSongOfPlaylistOfTopicActivity"></activity>
+        <activity android:name=".Activity.List_Album_OfGenre_Activity" />
+        <activity android:name=".Activity.List_Playlist_OfTopic_Activity" />
+        <activity android:name=".Activity.DanhSachGoiYActivity" />
         <activity android:name=".Activity.ListSongOffActivity" />
         <activity android:name=".Activity.CommentActivity" /> <!-- <activity android:name=".Activity.MainActivity"></activity> -->
         <activity android:name=".Activity.PlayMusicActivity" />
