@@ -1,6 +1,7 @@
 package com.example.myzing.Service;
 
 import com.example.myzing.Model.Advertise;
+import com.example.myzing.Model.Album;
 import com.example.myzing.Model.Playlist;
 import com.example.myzing.Model.Song;
 import com.example.myzing.Model.TopicGenre;
@@ -37,6 +38,10 @@ public interface DataService {
     @FormUrlEncoded
     @POST("getDanhSachPlaylist.php")
     Call<List<Playlist>> GetListPlaylistOfTopic(@Field("idTopic") String idTopic);
+
+    @FormUrlEncoded
+    @POST("getListAlbum.php")
+    Call<List<Album>> GetListAlbumOfGenre(@Field("idGenre") String idGenre);
 
     @FormUrlEncoded
     @POST("getListSong.php")

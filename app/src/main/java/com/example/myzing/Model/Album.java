@@ -1,33 +1,30 @@
 package com.example.myzing.Model;
 
-public class Album {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    private int id;
+import java.io.Serializable;
+
+public class Album implements Serializable {
+
+    @SerializedName("id")
+    @Expose
+    private String id;
+    @SerializedName("nameAlbum")
+    @Expose
     private String nameAlbum;
+    @SerializedName("nameSingerAlbum")
+    @Expose
     private String nameSingerAlbum;
+    @SerializedName("imageAlbum")
+    @Expose
     private String imageAlbum;
 
-    public Album() {
-    }
-
-    public Album(int id, String nameAlbum, String nameSingerAlbum, String imageAlbum) {
-        this.id = id;
-        this.nameAlbum = nameAlbum;
-        this.nameSingerAlbum = nameSingerAlbum;
-        this.imageAlbum = imageAlbum;
-    }
-
-    public Album(String nameAlbum, String nameSingerAlbum, String imageAlbum) {
-        this.nameAlbum = nameAlbum;
-        this.nameSingerAlbum = nameSingerAlbum;
-        this.imageAlbum = imageAlbum;
-    }
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
