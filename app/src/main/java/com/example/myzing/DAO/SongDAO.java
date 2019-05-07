@@ -1,11 +1,13 @@
 package com.example.myzing.DAO;
 
+import android.os.Handler;
 import android.util.Log;
 
 import com.example.myzing.Model.Song;
 import com.example.myzing.Service.APIService;
 import com.example.myzing.Service.DataService;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,20 +24,35 @@ public class SongDAO {
         arrayListSong = new ArrayList<>();
     }
 
-    public ArrayList<Song> getSongSearch(String stringSearchSong){
-        Call<List<Song>> listCall = dataService.GetSongSearch("Chỉ");
-        listCall.enqueue(new Callback<List<Song>>() {
-            @Override
-            public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
-                arrayListSong = (ArrayList<Song>) response.body();
-                Log.d("aaa", arrayListSong.get(0).getNameSong());
-            }
+    public ArrayList<Song> getSongSearch(String stringSearchSong) {
 
-            @Override
-            public void onFailure(Call<List<Song>> call, Throwable t) {
+//        try {
+//            Call<List<Song>> listCall = dataService.GetSongSearch(stringSearchSong);
+//            listCall.enqueue(new Callback<List<Song>>() {
+//                @Override
+//                public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
+//                    if (response.isSuccessful()) {
+//                        arrayListSong = (ArrayList<Song>) response.body();
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call<List<Song>> call, Throwable t) {
+//
+//                }
+//            });
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        try {
+            Call<List<Song>> listCall = dataService.GetSongSearch(stringSearchSong);
+            Response<List<Song>> response = listCall.execute();
+            arrayListSong = (ArrayList<Song>) response.body();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-            }
-        });
+//        Log.d("aaa", arrayListSong.size()+"as");
         return arrayListSong;
     }
 }

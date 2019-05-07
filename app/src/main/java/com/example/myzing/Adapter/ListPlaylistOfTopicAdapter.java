@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myzing.Activity.ListSongActivity;
 import com.example.myzing.Activity.ListSongOfPlaylistOfTopicActivity;
 import com.example.myzing.Model.Playlist;
 import com.example.myzing.R;
@@ -59,7 +60,8 @@ public class ListPlaylistOfTopicAdapter extends RecyclerView.Adapter<ListPlaylis
             imageView_Playlist_OfTopic.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent= new Intent(context, ListSongOfPlaylistOfTopicActivity.class);
+                    Intent intent= new Intent(context, ListSongActivity.class);
+                    intent.putExtra("itemPlaylist", arrayPlayist.get(getPosition()));
                     context.startActivity(intent);
                 }
             });

@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Handler;
+import android.os.StrictMode;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.myzing.Adapter.MainViewPagerAdapter;
@@ -20,8 +23,12 @@ import com.example.myzing.DAO.SongDAO;
 import com.example.myzing.Fragment.Fragment_Home;
 import com.example.myzing.Fragment.Fragment_More;
 import com.example.myzing.Fragment.Fragment_MyMusic;
+import com.example.myzing.Model.Song;
 import com.example.myzing.Model.User;
 import com.example.myzing.R;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     MainViewPagerAdapter mainViewPagerAdapter;
     SearchView searchView;
     Toolbar toolbar;
+    ArrayList<Song> arrayListSong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,23 +45,39 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initPermission();
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+//        arrayListSong = new ArrayList<>();
+
         mainViewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager());
         anhXa();
         addFragment();
 
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                return false;
+                arrayListSong = new SongDAO().getSongSearch(s);
+                if(arrayListSong.size()>0){
+                    Toast.makeText(MainActivity.this, arrayListSong.get(0).getNameSong(), Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(MainActivity.this, "Loi", Toast.LENGTH_SHORT).show();
+                }
+                return true;
             }
 
             @Override
-            public boolean onQueryTextChange(String s) {
-//                new SongDAO().getSongSearch("em");
-//                String a = new SongDAO().getSongSearch("em").get(0).getNameSong();
-//                Log.d("aa",a);
-//                Toast.makeText(MainActivity.this, a , Toast.LENGTH_SHORT).show();
-                return true;
+            public boolean onQueryTextChange(final String s) {
+
+                return false;
             }
         });
 
@@ -87,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void initPermission(){
+    public void initPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
@@ -108,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_search,menu);
+        getMenuInflater().inflate(R.menu.menu_search, menu);
         MenuItem menuItem = menu.findItem(R.id.menu_search);
         searchView = (SearchView) menuItem.getActionView();
 

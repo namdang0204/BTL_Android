@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.myzing.Adapter.DanhSachGoiYAdapter;
 import com.example.myzing.Adapter.ListSongAdapter;
 import com.example.myzing.Model.Advertise;
 import com.example.myzing.Model.Playlist;
@@ -85,9 +86,10 @@ public class ListSongActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
                 listSong = (ArrayList<Song>) response.body();
-                listSongAdapter = new ListSongAdapter(ListSongActivity.this, listSong);
+//                listSongAdapter = new ListSongAdapter(ListSongActivity.this, listSong);
+                DanhSachGoiYAdapter danhSachGoiYAdapter = new DanhSachGoiYAdapter(ListSongActivity.this, listSong);
                 recyclerViewListSong.setLayoutManager(new LinearLayoutManager(ListSongActivity.this));
-                recyclerViewListSong.setAdapter(listSongAdapter);
+                recyclerViewListSong.setAdapter(danhSachGoiYAdapter);
                 evenClick();
             }
 
