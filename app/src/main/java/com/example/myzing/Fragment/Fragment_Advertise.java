@@ -1,5 +1,6 @@
 package com.example.myzing.Fragment;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -79,7 +80,6 @@ public class Fragment_Advertise extends Fragment {
 
             @Override
             public void onFailure(Call<List<Advertise>> call, Throwable t) {
-
             }
         });
 

@@ -1,6 +1,7 @@
 package com.example.myzing.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myzing.Activity.ListSongActivity;
 import com.example.myzing.Model.Album;
 import com.example.myzing.R;
 import com.squareup.picasso.Picasso;
@@ -51,6 +53,15 @@ public class ListAlbumOfGenreAdapter extends RecyclerView.Adapter<ListAlbumOfGen
             super(itemView);
             imageView_List_Album_OfGenre= itemView.findViewById(R.id.imageview_image_album_ofgenre);
             textView_List_Album_OfGenre= itemView.findViewById(R.id.textview_name_album_ofgenre);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, ListSongActivity.class);
+                    intent.putExtra("itemAlbum", arrayAlbum.get(getPosition()));
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 

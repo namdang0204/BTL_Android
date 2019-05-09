@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.example.myzing.Adapter.DanhSachGoiYAdapter;
 import com.example.myzing.Adapter.ListSongAdapter;
 import com.example.myzing.Model.Advertise;
+import com.example.myzing.Model.Album;
 import com.example.myzing.Model.Playlist;
 import com.example.myzing.Model.Song;
 import com.example.myzing.R;
@@ -48,6 +49,7 @@ public class ListSongActivity extends AppCompatActivity {
     private ImageView imageViewListSong;
     private Advertise advertise;
     private Playlist playlist;
+    private Album album;
     private ListSongAdapter listSongAdapter;
 
     private ArrayList<Song> listSong;
@@ -63,16 +65,21 @@ public class ListSongActivity extends AppCompatActivity {
         init();
         if(advertise != null){
             setValueInView(advertise.getNameSong(), advertise.getImageSong());
-            getDataAdvertise("advertise",advertise.getIdAdvertise());
+            getDataListSong("advertise",advertise.getIdAdvertise());
         }
 
         if(playlist != null){
             setValueInView(playlist.getNamePlaylist(), playlist.getImagePlaylist());
-            getDataAdvertise("playlist",playlist.getId());
+            getDataListSong("playlist",playlist.getId());
+        }
+
+        if(album != null){
+            setValueInView(album.getNameAlbum(), album.getImageAlbum());
+            getDataListSong("album",album.getId());
         }
     }
     //get dữ liệu từ server gửi về
-    private void getDataAdvertise(String title, String id) {
+    private void getDataListSong(String title, String id) {
         DataService dataService = APIService.getDataService();
         Call<List<Song>> callbackListSong = null;
         if(title.equalsIgnoreCase("advertise")){
@@ -81,6 +88,10 @@ public class ListSongActivity extends AppCompatActivity {
 
         if(title.equalsIgnoreCase("playlist")){
             callbackListSong = dataService.GetListSongOfPlaylist(id);
+        }
+
+        if(title.equalsIgnoreCase("album")){
+            callbackListSong = dataService.GetListSongOfAlbum(id);
         }
         callbackListSong.enqueue(new Callback<List<Song>>() {
             @Override
@@ -150,6 +161,10 @@ public class ListSongActivity extends AppCompatActivity {
             }
             if(intent.hasExtra("itemPlaylist")){
                 playlist = (Playlist) intent.getSerializableExtra("itemPlaylist");
+            }
+
+            if(intent.hasExtra("itemAlbum")){
+                album = (Album) intent.getSerializableExtra("itemAlbum");
             }
         }
     }

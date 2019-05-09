@@ -1,8 +1,6 @@
 package com.example.myzing.Activity;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,10 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.myzing.Fragment.Fragment_Account;
 import com.example.myzing.Model.User;
+import com.example.myzing.Service.APIService;
+import com.example.myzing.Service.DataService;
 import com.facebook.AccessToken;
-import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -33,7 +31,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import org.json.JSONException;
@@ -41,13 +38,17 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class LoginFbActivity extends AppCompatActivity implements View.OnClickListener {
     CallbackManager callbackManager;
-    LoginButton loginButton;
+    LoginButton buttonLoginFb;
     EditText editTextUserName, editTextPassword;
     Button buttonLogin;
     public static GoogleSignInClient mGoogleSignInClient;
-    SignInButton signInButton;
+    SignInButton buttonSignInGoogle;
     Button buttonSignOutGoogle;
     ProfilePictureView profilePictureView;
     final int RC_SIGN_IN = 0;
@@ -59,48 +60,37 @@ public class LoginFbActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_fb);
+
         callbackManager = CallbackManager.Factory.create();
-        loginButton = (LoginButton) findViewById(R.id.login_fb_button);
 
-        signInButton = (SignInButton) findViewById(R.id.sign_in_google_button);
-        editTextUserName = (EditText) findViewById(R.id.edittext_username);
-        editTextPassword = (EditText) findViewById(R.id.edittext_password);
-        buttonLogin = (Button) findViewById(R.id.button_login);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
-
-//        buttonSignOutGoogle = (Button) findViewById(R.id.button_sign_out_google);
-//        profilePictureView = (ProfilePictureView) findViewById(R.id.profile_picture_view);
+        anhxa();
         
-        loginButton.setReadPermissions(Arrays.asList("public_profile", "email"));
-        user = new User();
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-        if (isLoggedIn) {
-            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile","user_birthday"));
-        }
-
-        loginGoogle();
+        buttonLoginFb.setReadPermissions(Arrays.asList("public_profile", "email"));
+        buttonSignInGoogle.setOnClickListener(this);
 
         setLogin_ButtonFb();
 
-
     }
 
-    private void loginGoogle() {
+    private void anhxa() {
+        buttonLoginFb = (LoginButton) findViewById(R.id.login_fb_button);
+        buttonSignInGoogle = (SignInButton) findViewById(R.id.sign_in_google_button);
+        editTextUserName = (EditText) findViewById(R.id.edittext_username);
+        editTextPassword = (EditText) findViewById(R.id.edittext_password);
+        buttonLogin = (Button) findViewById(R.id.button_login);
+        buttonSignInGoogle.setSize(SignInButton.SIZE_STANDARD);
+    }
+
+    private void signInGoogle() {
+
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
-
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        signInButton.setOnClickListener(this);
-//        buttonSignOutGoogle.setOnClickListener(this);
-    }
-
-    private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -109,26 +99,54 @@ public class LoginFbActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.sign_in_google_button:
-                signIn();
+                signInGoogle();
                 break;
-//            case R.id.button_sign_out_google:
-//                signOutGoogle();
-//                break;
+            case R.id.button_login:
+                String userName = editTextUserName.getText().toString();
+                String passWord = editTextPassword.getText().toString();
+                if(userName.isEmpty() && passWord.isEmpty()){
+                    user = new User();
+                    user.setUserName(userName);
+                    user.setPassword(passWord);
+                    checkLogin(user);
+                }
+                break;
         }
     }
 
-    private void signOutGoogle() {
-        mGoogleSignInClient.signOut()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(LoginFbActivity.this, "Sign out successfully", Toast.LENGTH_SHORT).show();
-                    }
-                });
+    private boolean checkLogin(User user) {
+        final boolean[] check = {false};
+        DataService dataService = APIService.getDataService();
+        Call<String> callBack = dataService.checkLogin(user.getUserName(), user.getPassword());
+        callBack.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                String result =  response.body();
+                if(result.equalsIgnoreCase("Success")){
+                    check[0] = true;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
+        return check[0];
     }
 
+//    private void signOutGoogle() {
+//        mGoogleSignInClient.signOut()
+//                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        Toast.makeText(LoginFbActivity.this, "Sign out successfully", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//    }
+
     private void setLogin_ButtonFb() {
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        buttonLoginFb.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 GraphRequest graphRequest = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
@@ -218,6 +236,12 @@ public class LoginFbActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onStart() {
+        //Check fb đã login
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+        if (isLoggedIn) {
+            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile","user_birthday"));
+        }
         // Check for existing Google Sign In account, if the user is already signed in
         // the GoogleSignInAccount will be non-null.
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);

@@ -24,35 +24,67 @@ public class SongDAO {
         arrayListSong = new ArrayList<>();
     }
 
-    public ArrayList<Song> getSongSearch(String stringSearchSong) {
+    public void getSongSearch(String stringSearchSong, final ISongDAO callback) {
 
-//        try {
-//            Call<List<Song>> listCall = dataService.GetSongSearch(stringSearchSong);
-//            listCall.enqueue(new Callback<List<Song>>() {
-//                @Override
-//                public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
-//                    if (response.isSuccessful()) {
-//                        arrayListSong = (ArrayList<Song>) response.body();
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(Call<List<Song>> call, Throwable t) {
-//
-//                }
-//            });
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         try {
             Call<List<Song>> listCall = dataService.GetSongSearch(stringSearchSong);
-            Response<List<Song>> response = listCall.execute();
-            arrayListSong = (ArrayList<Song>) response.body();
-        } catch (IOException e) {
+            listCall.enqueue(new Callback<List<Song>>() {
+                @Override
+                public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
+                    if (response.isSuccessful()) {
+                        arrayListSong = (ArrayList<Song>) response.body();
+                        callback.returnListSong(arrayListSong);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Song>> call, Throwable t) {
+
+                }
+            });
+        } catch (Exception e) {
             e.printStackTrace();
         }
+//        try {
+//            Call<List<Song>> listCall = dataService.GetSongSearch(stringSearchSong);
+//            Response<List<Song>> response = listCall.execute();
+//            arrayListSong = (ArrayList<Song>) response.body();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
 //        Log.d("aaa", arrayListSong.size()+"as");
-        return arrayListSong;
     }
+
+//    public ArrayList<Song> getSongSearch(String stringSearchSong) {
+//
+////        try {
+////            Call<List<Song>> listCall = dataService.GetSongSearch(stringSearchSong);
+////            listCall.enqueue(new Callback<List<Song>>() {
+////                @Override
+////                public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
+////                    if (response.isSuccessful()) {
+////                        arrayListSong = (ArrayList<Song>) response.body();
+////                    }
+////                }
+////
+////                @Override
+////                public void onFailure(Call<List<Song>> call, Throwable t) {
+////
+////                }
+////            });
+////        } catch (Exception e) {
+////            e.printStackTrace();
+////        }
+//        try {
+//            Call<List<Song>> listCall = dataService.GetSongSearch(stringSearchSong);
+//            Response<List<Song>> response = listCall.execute();
+//            arrayListSong = (ArrayList<Song>) response.body();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+////        Log.d("aaa", arrayListSong.size()+"as");
+//        return arrayListSong;
+//    }
 }

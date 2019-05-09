@@ -61,25 +61,25 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                arrayListSong = new SongDAO().getSongSearch(s);
-                if(arrayListSong.size()>0){
-                    Toast.makeText(MainActivity.this, arrayListSong.get(0).getNameSong(), Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(MainActivity.this, "Loi", Toast.LENGTH_SHORT).show();
-                }
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(final String s) {
-
-                return false;
-            }
-        });
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String s) {
+//                arrayListSong = new SongDAO().getSongSearch(s);
+//                if(arrayListSong.size()>0){
+//                    Toast.makeText(MainActivity.this, arrayListSong.get(0).getNameSong(), Toast.LENGTH_SHORT).show();
+//                }else{
+//                    Toast.makeText(MainActivity.this, "Loi", Toast.LENGTH_SHORT).show();
+//                }
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(final String s) {
+//
+//                return false;
+//            }
+//        });
 
         // Khong refresh lai fragment
         int limit = (mainViewPagerAdapter.getCount() > 1 ? mainViewPagerAdapter.getCount() - 1 : 1);
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
+// cấp quyền truy cập bộ nhớ
     public void initPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
