@@ -129,7 +129,7 @@ public class Fragment_Topic_Genre extends Fragment {
                     cardView1.addView(textView1);
                     linearLayout.addView(cardView1);
 
-                    imageView.setOnClickListener(new View.OnClickListener() {
+                    imageView1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(getActivity(), List_Album_OfGenre_Activity.class);
