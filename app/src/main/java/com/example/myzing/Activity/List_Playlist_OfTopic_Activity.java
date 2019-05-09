@@ -29,6 +29,7 @@ public class List_Playlist_OfTopic_Activity extends AppCompatActivity {
     RecyclerView recyclerView_List_Playlist_OfTopic;
     Toolbar toolbar_List_Playlist_OfTopic;
     ListPlaylistOfTopicAdapter listPlaylistOfTopicAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,16 +40,16 @@ public class List_Playlist_OfTopic_Activity extends AppCompatActivity {
     }
 
     private void GetData() {
-        DataService dataService= APIService.getDataService();
-        Call<List<Playlist>> listCall= dataService.GetListPlaylistOfTopic(topic.getIdTopic());
+        DataService dataService = APIService.getDataService();
+        Call<List<Playlist>> listCall = dataService.GetListPlaylistOfTopic(topic.getIdTopic());
         listCall.enqueue(new Callback<List<Playlist>>() {
             @Override
             public void onResponse(Call<List<Playlist>> call, Response<List<Playlist>> response) {
-                ArrayList<Playlist>  arrayPlaylist= (ArrayList<Playlist>) response.body();
+                ArrayList<Playlist> arrayPlaylist = (ArrayList<Playlist>) response.body();
 //                Log.d("aaa", arrayPlaylist.size()+"");
-                    listPlaylistOfTopicAdapter=new ListPlaylistOfTopicAdapter(List_Playlist_OfTopic_Activity.this, arrayPlaylist);
-                    recyclerView_List_Playlist_OfTopic.setLayoutManager(new GridLayoutManager(List_Playlist_OfTopic_Activity.this,2));
-                    recyclerView_List_Playlist_OfTopic.setAdapter(listPlaylistOfTopicAdapter);
+                listPlaylistOfTopicAdapter = new ListPlaylistOfTopicAdapter(List_Playlist_OfTopic_Activity.this, arrayPlaylist);
+                recyclerView_List_Playlist_OfTopic.setLayoutManager(new GridLayoutManager(List_Playlist_OfTopic_Activity.this, 2));
+                recyclerView_List_Playlist_OfTopic.setAdapter(listPlaylistOfTopicAdapter);
             }
 
             @Override
@@ -59,8 +60,8 @@ public class List_Playlist_OfTopic_Activity extends AppCompatActivity {
     }
 
     private void init() {
-        recyclerView_List_Playlist_OfTopic= findViewById(R.id.recycleview_list_playlist_oftopic);
-        toolbar_List_Playlist_OfTopic= findViewById(R.id.toolbar_list_playlist_oftopic);
+        recyclerView_List_Playlist_OfTopic = findViewById(R.id.recycleview_list_playlist_oftopic);
+        toolbar_List_Playlist_OfTopic = findViewById(R.id.toolbar_list_playlist_oftopic);
         setSupportActionBar(toolbar_List_Playlist_OfTopic);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(topic.getNameTopic());
@@ -73,11 +74,11 @@ public class List_Playlist_OfTopic_Activity extends AppCompatActivity {
     }
 
     private void GetIntent() {
-        Intent intent= getIntent();
-    if(intent.hasExtra("topic")){
-        topic= (Topic) intent.getSerializableExtra("topic");
+        Intent intent = getIntent();
+        if (intent.hasExtra("topic")) {
+            topic = (Topic) intent.getSerializableExtra("topic");
 //        Toast.makeText(this,topic.getNameTopic(), Toast.LENGTH_SHORT).show();
-    }
+        }
 
     }
 }

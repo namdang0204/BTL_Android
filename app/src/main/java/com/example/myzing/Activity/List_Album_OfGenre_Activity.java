@@ -80,7 +80,7 @@ public class List_Album_OfGenre_Activity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent.hasExtra("genre")) {
             genre = (Genre) intent.getSerializableExtra("genre");
-            Toast.makeText(this,genre.getNameGenre(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this,genre.getNameGenre(), Toast.LENGTH_SHORT).show();
         }
     }
 

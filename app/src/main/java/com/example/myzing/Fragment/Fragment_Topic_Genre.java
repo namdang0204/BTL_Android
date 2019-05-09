@@ -19,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myzing.Activity.DanhSachTopicGenreActivity;
+import com.example.myzing.Activity.List_Album_OfGenre_Activity;
+import com.example.myzing.Activity.List_Playlist_OfTopic_Activity;
 import com.example.myzing.Model.Genre;
 import com.example.myzing.Model.Topic;
 import com.example.myzing.Model.TopicGenre;
@@ -99,7 +101,17 @@ public class Fragment_Topic_Genre extends Fragment {
                     cardView.addView(imageView);
                     cardView.addView(textView);
                     linearLayout.addView(cardView);
+                    final int iFinal = i;
+                    imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getActivity(), List_Playlist_OfTopic_Activity.class);
+                            intent.putExtra("topic", listTopic.get(iFinal));
+                            startActivity(intent);
+                        }
+                    });
 
+                    //Genre
                     CardView cardView1 = new CardView(getActivity());
                     cardView1.setRadius(10);
                     ImageView imageView1 = new ImageView(getActivity());
@@ -116,6 +128,15 @@ public class Fragment_Topic_Genre extends Fragment {
                     cardView1.addView(imageView1);
                     cardView1.addView(textView1);
                     linearLayout.addView(cardView1);
+
+                    imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getActivity(), List_Album_OfGenre_Activity.class);
+                            intent.putExtra("genre", listGenre.get(iFinal));
+                            startActivity(intent);
+                        }
+                    });
                 }
 
                 horizontalScrollView.addView(linearLayout);
