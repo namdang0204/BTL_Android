@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myzing.Activity.ListSongActivity;
-import com.example.myzing.Activity.ListSongOfPlaylistOfTopicActivity;
 import com.example.myzing.Model.Playlist;
 import com.example.myzing.R;
 import com.squareup.picasso.Picasso;
@@ -57,7 +56,7 @@ public class ListPlaylistOfTopicAdapter extends RecyclerView.Adapter<ListPlaylis
             super(itemView);
             imageView_Playlist_OfTopic = itemView.findViewById(R.id.imageview_playlist_oftopic);
             textView_Name_Playlist_OfTopic = itemView.findViewById(R.id.textview_name_playlist_oftopic);
-            imageView_Playlist_OfTopic.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent= new Intent(context, ListSongActivity.class);

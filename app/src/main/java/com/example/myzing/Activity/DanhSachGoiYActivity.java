@@ -1,15 +1,13 @@
 package com.example.myzing.Activity;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
 
-import com.example.myzing.Adapter.DanhSachGoiYAdapter;
+import com.example.myzing.Adapter.ListSongAdapter;
 import com.example.myzing.Model.Song;
 import com.example.myzing.R;
 import com.example.myzing.Service.APIService;
@@ -25,7 +23,7 @@ import retrofit2.Response;
 public class DanhSachGoiYActivity extends AppCompatActivity {
     Toolbar toolbar;
     RecyclerView recyclerView_List_GoiY;
-    DanhSachGoiYAdapter danhSachGoiYAdapter;
+    ListSongAdapter listSongAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +42,9 @@ public class DanhSachGoiYActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
                 ArrayList<Song> listSong= (ArrayList<Song>) response.body();
-                danhSachGoiYAdapter= new DanhSachGoiYAdapter(DanhSachGoiYActivity.this,listSong);
+                listSongAdapter= new ListSongAdapter(DanhSachGoiYActivity.this,listSong);
                 recyclerView_List_GoiY.setLayoutManager(new LinearLayoutManager(DanhSachGoiYActivity.this));
-                recyclerView_List_GoiY.setAdapter(danhSachGoiYAdapter);
+                recyclerView_List_GoiY.setAdapter(listSongAdapter);
 
             }
 

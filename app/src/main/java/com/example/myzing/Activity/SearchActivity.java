@@ -1,37 +1,26 @@
 package com.example.myzing.Activity;
 
-import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
-import com.example.myzing.Adapter.DanhSachGoiYAdapter;
+import com.example.myzing.Adapter.ListSongAdapter;
 import com.example.myzing.DAO.ISongDAO;
 import com.example.myzing.DAO.SongDAO;
 import com.example.myzing.Model.Song;
 import com.example.myzing.R;
-import com.example.myzing.Service.APIService;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class SearchActivity extends AppCompatActivity {
 
     private SearchView searchView;
     private RecyclerView recyclerViewSearch;
-    private DanhSachGoiYAdapter danhSachGoiYAdapter;
+    private ListSongAdapter listSongAdapter;
     private ArrayList<Song> arrayListSong;
 
     @Override
@@ -60,9 +49,9 @@ public class SearchActivity extends AppCompatActivity {
 //                        Iterator it = listSong.iterator();
                         while (listSong.size() > 0){
                             arrayListSong = listSong;
-                                danhSachGoiYAdapter = new DanhSachGoiYAdapter(SearchActivity.this, arrayListSong);
+                            listSongAdapter = new ListSongAdapter(SearchActivity.this, arrayListSong);
                                 recyclerViewSearch.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
-                                recyclerViewSearch.setAdapter(danhSachGoiYAdapter);
+                                recyclerViewSearch.setAdapter(listSongAdapter);
                             break;
                         }
                     }

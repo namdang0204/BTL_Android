@@ -22,7 +22,6 @@
         <activity android:name=".Activity.DanhSachTopicGenreActivity" />
         <activity android:name=".Activity.List_Playlist_OfTopic_Activity"/>
         <activity android:name=".Activity.List_Album_OfGenre_Activity"/>
-        <activity android:name=".Activity.ListSongOfPlaylistOfTopicActivity"/>
         <activity android:name=".Activity.SearchActivity"/>
         <activity android:name=".Activity.MainActivity">
             <intent-filter>

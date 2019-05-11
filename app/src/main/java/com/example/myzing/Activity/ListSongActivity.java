@@ -15,12 +15,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.example.myzing.Adapter.DanhSachGoiYAdapter;
 import com.example.myzing.Adapter.ListSongAdapter;
 import com.example.myzing.Model.Advertise;
 import com.example.myzing.Model.Album;
@@ -31,7 +28,6 @@ import com.example.myzing.Service.APIService;
 import com.example.myzing.Service.DataService;
 import com.squareup.picasso.Picasso;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,9 +94,9 @@ public class ListSongActivity extends AppCompatActivity {
             public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
                 listSong = (ArrayList<Song>) response.body();
 //                listSongAdapter = new ListSongAdapter(ListSongActivity.this, listSong);
-                DanhSachGoiYAdapter danhSachGoiYAdapter = new DanhSachGoiYAdapter(ListSongActivity.this, listSong);
+                listSongAdapter = new ListSongAdapter(ListSongActivity.this, listSong);
                 recyclerViewListSong.setLayoutManager(new LinearLayoutManager(ListSongActivity.this));
-                recyclerViewListSong.setAdapter(danhSachGoiYAdapter);
+                recyclerViewListSong.setAdapter(listSongAdapter);
                 evenClick();
             }
 

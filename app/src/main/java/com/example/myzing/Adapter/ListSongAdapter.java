@@ -6,57 +6,66 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myzing.Activity.PlayMusicActivity;
 import com.example.myzing.Model.Song;
 import com.example.myzing.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHolder>{
+public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHolder> {
     Context context;
-    ArrayList<Song> listSong;
+    ArrayList<Song> arrayListSongGoiY;
 
-    public ListSongAdapter(Context context, ArrayList<Song> listSong) {
+    public ListSongAdapter(Context context, ArrayList<Song> arrayListSongGoiY) {
         this.context = context;
-        this.listSong = listSong;
+        this.arrayListSongGoiY = arrayListSongGoiY;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.dong_list_song, viewGroup, false);
+        LayoutInflater layoutInflater= LayoutInflater.from(context);
+        View  view= layoutInflater.inflate(R.layout.dong_goiy,viewGroup, false );
         return new ViewHolder(view);
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Song song = listSong.get(i);
-        viewHolder.textViewIndex.setText(i+1+"");
-        viewHolder.textViewNameSong.setText(song.getNameSong());
-        viewHolder.textViewNameSinger.setText(song.getSinger());
+        Song song=arrayListSongGoiY.get(i);
+        viewHolder.txtView_NameSong_GoiY.setText(song.getNameSong());
+        viewHolder.txtView_NameSinger_GoiY.setText(song.getSinger());
+        Picasso.with(context).load(song.getImageSong()).into(viewHolder.imgView_image_GoiY);
     }
 
     @Override
     public int getItemCount() {
-        return listSong.size();
+        return arrayListSongGoiY.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView textViewIndex, textViewNameSong, textViewNameSinger;
-        private ImageView imageViewLike;
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView txtView_NameSong_GoiY, txtView_NameSinger_GoiY, txtView_Viewmore_GoiY;
+        private ImageButton imgButton_GoiY;
+        private ImageView imgView_image_GoiY;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewIndex = itemView.findViewById(R.id.textview_index_list_song);
-            textViewNameSong = itemView.findViewById(R.id.textView_name_song);
-            textViewNameSinger = itemView.findViewById(R.id.textview_name_singer);
-            imageViewLike = itemView.findViewById(R.id.imageview_like);
+            txtView_NameSong_GoiY = itemView.findViewById(R.id.textview_name_song_goiy);
+            txtView_NameSinger_GoiY= itemView.findViewById(R.id.textview_name_singer_goiy);
+            imgButton_GoiY= itemView.findViewById(R.id.image_button_goiy);
+            imgView_image_GoiY= itemView.findViewById(R.id.imageview_image_goiy);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -67,12 +76,37 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
                         PlayMusicActivity.mediaPlayer = null;
                     }
                     Bundle bundle = new Bundle();
-                    bundle.putParcelableArrayList("listSongOn", listSong);
+                    bundle.putParcelableArrayList("listSongOn", arrayListSongGoiY);
                     bundle.putInt("position", getPosition());
-//                    intent.putExtra("listSongOn", listSong.get(getPosition()));
                     intent.putExtras(bundle);
                     context.startActivity(intent);
                 }
+            });
+            imgButton_GoiY.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showPopupMenu();
+                }
+
+                private void showPopupMenu() {
+                    PopupMenu popupMenu= new PopupMenu(context, imgButton_GoiY);
+                    popupMenu.getMenuInflater().inflate(R.menu.menu_goi_y, popupMenu.getMenu());
+                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            switch (item.getItemId()){
+//                                case R.id.item_share:
+//                                    break;
+                                case R.id.item_like:
+
+
+                            }
+                            return false;
+                        }
+                    });
+                    popupMenu.show();
+                }
+
             });
 
         }

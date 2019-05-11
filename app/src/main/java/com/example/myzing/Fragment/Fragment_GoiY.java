@@ -2,7 +2,6 @@ package com.example.myzing.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,10 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.myzing.Activity.DanhSachGoiYActivity;
-import com.example.myzing.Adapter.GoiYAdapter;
+import com.example.myzing.Adapter.ListSongAdapter;
 import com.example.myzing.Model.Song;
 import com.example.myzing.R;
 import com.example.myzing.Service.APIService;
@@ -30,7 +28,7 @@ import retrofit2.Response;
 public class Fragment_GoiY extends Fragment {
     View view;
     ArrayList<Song> arraySong;
-    GoiYAdapter goiYAdapter;
+    ListSongAdapter listSongAdapter;
     TextView tv_Title_GoiY, tv_ViewMore_GoiY;
     RecyclerView recyclerView_GoiY;
 
@@ -62,10 +60,10 @@ public class Fragment_GoiY extends Fragment {
             @Override
             public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
                 arraySong= (ArrayList<Song>) response.body();
-                goiYAdapter= new GoiYAdapter(getActivity(), arraySong);
+                listSongAdapter= new ListSongAdapter(getActivity(), arraySong);
                 recyclerView_GoiY.setLayoutManager(new LinearLayoutManager(getActivity()));
 //                Toast.makeText(getContext(),arraySong.get(0).getNameSong()+"", Toast.LENGTH_SHORT).show();
-                recyclerView_GoiY.setAdapter(goiYAdapter);
+                recyclerView_GoiY.setAdapter(listSongAdapter);
             }
 
             @Override

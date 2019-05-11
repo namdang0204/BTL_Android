@@ -47,7 +47,8 @@ public class List_Album_OfGenre_Activity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Album>> call, Response<List<Album>> response) {
                 ArrayList<Album> arrayAlbum = (ArrayList<Album>) response.body();
-//                Log.d("aaa",arrayAlbum.size()+"");
+                Log.d("aaa",arrayAlbum.size()+"");
+
                 listAlbumOfGenreAdapter = new ListAlbumOfGenreAdapter(List_Album_OfGenre_Activity.this, arrayAlbum);
 
                 recyclerView_List_Album__OfGenre.setLayoutManager(new GridLayoutManager(List_Album_OfGenre_Activity.this, 2));
