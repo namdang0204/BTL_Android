@@ -63,7 +63,7 @@ public class DanhSachGoiYActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("GỢI Ý");
-        toolbar.setTitleTextColor(getResources().getColor(R.color.mautim));
+        toolbar.setTitleTextColor(getResources().getColor(R.color.mauden));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

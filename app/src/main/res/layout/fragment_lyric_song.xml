@@ -7,7 +7,7 @@
         android:id="@+id/textview_lyric_song"
         android:textSize="14sp"
         android:gravity="center"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/mauden"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
