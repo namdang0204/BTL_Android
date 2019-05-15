@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.myzing.Adapter.ListPlaylistOfTopicAdapter;
+import com.example.myzing.DAO.IPlaylistDAO;
+import com.example.myzing.DAO.PlaylistDAO;
 import com.example.myzing.Model.Playlist;
 import com.example.myzing.Model.Topic;
 import com.example.myzing.R;
@@ -40,21 +42,15 @@ public class List_Playlist_OfTopic_Activity extends AppCompatActivity {
     }
 
     private void GetData() {
-        DataService dataService = APIService.getDataService();
-        Call<List<Playlist>> listCall = dataService.GetListPlaylistOfTopic(topic.getIdTopic());
-        listCall.enqueue(new Callback<List<Playlist>>() {
+        new PlaylistDAO().getPlaylistOfTopic(topic, new IPlaylistDAO() {
             @Override
-            public void onResponse(Call<List<Playlist>> call, Response<List<Playlist>> response) {
-                ArrayList<Playlist> arrayPlaylist = (ArrayList<Playlist>) response.body();
-//                Log.d("aaa", arrayPlaylist.size()+"");
-                listPlaylistOfTopicAdapter = new ListPlaylistOfTopicAdapter(List_Playlist_OfTopic_Activity.this, arrayPlaylist);
-                recyclerView_List_Playlist_OfTopic.setLayoutManager(new GridLayoutManager(List_Playlist_OfTopic_Activity.this, 2));
-                recyclerView_List_Playlist_OfTopic.setAdapter(listPlaylistOfTopicAdapter);
-            }
-
-            @Override
-            public void onFailure(Call<List<Playlist>> call, Throwable t) {
-
+            public void returnListPlaylist(ArrayList<Playlist> listPlaylist) {
+                while (listPlaylist.size()>0){
+                    listPlaylistOfTopicAdapter = new ListPlaylistOfTopicAdapter(List_Playlist_OfTopic_Activity.this, listPlaylist);
+                    recyclerView_List_Playlist_OfTopic.setLayoutManager(new GridLayoutManager(List_Playlist_OfTopic_Activity.this, 2));
+                    recyclerView_List_Playlist_OfTopic.setAdapter(listPlaylistOfTopicAdapter);
+                    break;
+                }
             }
         });
     }

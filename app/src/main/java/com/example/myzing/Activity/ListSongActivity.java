@@ -19,6 +19,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.myzing.Adapter.ListSongAdapter;
+import com.example.myzing.DAO.ISongDAO;
+import com.example.myzing.DAO.SongDAO;
 import com.example.myzing.Model.Advertise;
 import com.example.myzing.Model.Album;
 import com.example.myzing.Model.Playlist;
@@ -48,7 +50,7 @@ public class ListSongActivity extends AppCompatActivity {
     private Album album;
     private ListSongAdapter listSongAdapter;
 
-    private ArrayList<Song> listSong;
+    private ArrayList<Song> arrayListSong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,52 +61,52 @@ public class ListSongActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
         DataIntent();
         init();
-        if(advertise != null){
+        getDataListSong();
+
+    }
+
+    //get dữ liệu từ server gửi về
+    private void getDataListSong() {
+        if (advertise != null) {
             setValueInView(advertise.getNameSong(), advertise.getImageSong());
-            getDataListSong("advertise",advertise.getIdAdvertise());
+            new SongDAO().getDataListSong("advertise", advertise.getIdAdvertise(), new ISongDAO() {
+                @Override
+                public void returnListSong(ArrayList<Song> listSong) {
+                    setAdapter(listSong);
+                }
+            });
         }
 
-        if(playlist != null){
+        if (playlist != null) {
             setValueInView(playlist.getNamePlaylist(), playlist.getImagePlaylist());
-            getDataListSong("playlist",playlist.getId());
+            new SongDAO().getDataListSong("playlist", playlist.getId(), new ISongDAO() {
+                @Override
+                public void returnListSong(ArrayList<Song> listSong) {
+                    setAdapter(listSong);
+                }
+            });
         }
 
-        if(album != null){
+        if (album != null) {
             setValueInView(album.getNameAlbum(), album.getImageAlbum());
-            getDataListSong("album",album.getId());
+            new SongDAO().getDataListSong("album", album.getId(), new ISongDAO() {
+                @Override
+                public void returnListSong(ArrayList<Song> listSong) {
+                    setAdapter(listSong);
+                }
+            });
         }
     }
-    //get dữ liệu từ server gửi về
-    private void getDataListSong(String title, String id) {
-        DataService dataService = APIService.getDataService();
-        Call<List<Song>> callbackListSong = null;
-        if(title.equalsIgnoreCase("advertise")){
-            callbackListSong = dataService.GetListSongOfAdvertise(id);
+
+    public void setAdapter(ArrayList<Song> listSong) {
+        while (listSong.size() > 0) {
+            arrayListSong = listSong;
+            listSongAdapter = new ListSongAdapter(ListSongActivity.this, arrayListSong);
+            recyclerViewListSong.setLayoutManager(new LinearLayoutManager(ListSongActivity.this));
+            recyclerViewListSong.setAdapter(listSongAdapter);
+            evenClick();
+            break;
         }
-
-        if(title.equalsIgnoreCase("playlist")){
-            callbackListSong = dataService.GetListSongOfPlaylist(id);
-        }
-
-        if(title.equalsIgnoreCase("album")){
-            callbackListSong = dataService.GetListSongOfAlbum(id);
-        }
-        callbackListSong.enqueue(new Callback<List<Song>>() {
-            @Override
-            public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
-                listSong = (ArrayList<Song>) response.body();
-//                listSongAdapter = new ListSongAdapter(ListSongActivity.this, listSong);
-                listSongAdapter = new ListSongAdapter(ListSongActivity.this, listSong);
-                recyclerViewListSong.setLayoutManager(new LinearLayoutManager(ListSongActivity.this));
-                recyclerViewListSong.setAdapter(listSongAdapter);
-                evenClick();
-            }
-
-            @Override
-            public void onFailure(Call<List<Song>> call, Throwable t) {
-
-            }
-        });
     }
 
     private void setValueInView(String name, String image) {
@@ -152,27 +154,27 @@ public class ListSongActivity extends AppCompatActivity {
     private void DataIntent() {
         Intent intent = getIntent();
         if (intent != null) {
-            if(intent.hasExtra("advertise")){
+            if (intent.hasExtra("advertise")) {
                 advertise = (Advertise) intent.getSerializableExtra("advertise");
             }
-            if(intent.hasExtra("itemPlaylist")){
+            if (intent.hasExtra("itemPlaylist")) {
                 playlist = (Playlist) intent.getSerializableExtra("itemPlaylist");
             }
 
-            if(intent.hasExtra("itemAlbum")){
+            if (intent.hasExtra("itemAlbum")) {
                 album = (Album) intent.getSerializableExtra("itemAlbum");
             }
         }
     }
 
-    private void evenClick(){
+    private void evenClick() {
         floatingActionButton.setEnabled(true);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListSongActivity.this, PlayMusicActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putParcelableArrayList("listSongOn", listSong);
+                bundle.putParcelableArrayList("listSongOn", arrayListSong);
                 bundle.putInt("position", 0);
                 intent.putExtras(bundle);
                 startActivity(intent);

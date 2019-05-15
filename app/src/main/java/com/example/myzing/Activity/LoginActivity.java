@@ -125,14 +125,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 signInGoogle();
                 break;
             case R.id.button_login:
-                if(validateUserName() && validatePassword()){
-                    String userName = textInputLayoutUserName.getEditText().getText().toString().trim();
-                    String passWord = textInputLayoutPassword.getEditText().getText().toString().trim();
-                    user = new User();
-                    user.setUserName(userName);
-                    user.setPassword(passWord);
-                    checkLogin(user);
+                if(!validateUserName() | !validatePassword()){
+                   return;
                 }
+                String userName = textInputLayoutUserName.getEditText().getText().toString().trim();
+                String passWord = textInputLayoutPassword.getEditText().getText().toString().trim();
+                user = new User();
+                user.setUserName(userName);
+                user.setPassword(passWord);
+                checkLogin(user);
                 break;
             case R.id.button_creat_account:
                 Intent intent = new Intent(this, CreatAccountActivity.class);

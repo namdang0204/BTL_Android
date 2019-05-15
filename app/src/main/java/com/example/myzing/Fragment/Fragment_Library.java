@@ -17,6 +17,7 @@ import android.widget.ListView;
 
 import com.example.myzing.Activity.ListSongOffActivity;
 import com.example.myzing.Adapter.LibraryAdapter;
+import com.example.myzing.DAO.SongDAO;
 import com.example.myzing.Model.Library;
 import com.example.myzing.Model.Song;
 import com.example.myzing.R;
@@ -66,30 +67,32 @@ public class Fragment_Library extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-        String selection = MediaStore.Audio.Media.IS_MUSIC ;
-        Cursor cursor = getActivity().getContentResolver().query(uri, null, selection, null, null);
-
-        if (cursor != null && cursor.moveToFirst()) {
-            // Get columns
-            int nameColumn = cursor.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME);
-            int artistColumn = cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
-            int dataColumn = cursor.getColumnIndex(MediaStore.Audio.Media.DATA);
-
-            do {
-                String name = cursor.getString(nameColumn);
-                String nameArtist = cursor.getString(artistColumn);
-                String url = cursor.getString(dataColumn);
-                arrayListSong.add(new Song(name,  url, nameArtist));
-            } while (cursor.moveToNext());
-            cursor.close();
-            Collections.sort(arrayListSong, new Comparator<Song>() {
-                @Override
-                public int compare(Song song1, Song song2) {
-                    return song1.getNameSong().compareToIgnoreCase(song2.getNameSong());
-                }
-            });
-            arrayListLibrary.get(0).setNumberOfOneLibrary(arrayListSong.size()+"");
-        }
+        arrayListSong = new SongDAO().getSongOff(getActivity());
+        arrayListLibrary.get(0).setNumberOfOneLibrary(arrayListSong.size()+"");
+//        Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+//        String selection = MediaStore.Audio.Media.IS_MUSIC ;
+//        Cursor cursor = getActivity().getContentResolver().query(uri, null, selection, null, null);
+//
+//        if (cursor != null && cursor.moveToFirst()) {
+//            // Get columns
+//            int nameColumn = cursor.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME);
+//            int artistColumn = cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
+//            int dataColumn = cursor.getColumnIndex(MediaStore.Audio.Media.DATA);
+//
+//            do {
+//                String name = cursor.getString(nameColumn);
+//                String nameArtist = cursor.getString(artistColumn);
+//                String url = cursor.getString(dataColumn);
+//                arrayListSong.add(new Song(name,  url, nameArtist));
+//            } while (cursor.moveToNext());
+//            cursor.close();
+//            Collections.sort(arrayListSong, new Comparator<Song>() {
+//                @Override
+//                public int compare(Song song1, Song song2) {
+//                    return song1.getNameSong().compareToIgnoreCase(song2.getNameSong());
+//                }
+//            });
+//            arrayListLibrary.get(0).setNumberOfOneLibrary(arrayListSong.size()+"");
+//        }
     }
 }

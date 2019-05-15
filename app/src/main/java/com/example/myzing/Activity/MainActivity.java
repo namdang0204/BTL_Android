@@ -103,11 +103,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.my_view_page);
         tabLayout = (TabLayout) findViewById(R.id.my_tablayout);
         searchView = findViewById(R.id.search_view);
-//        toolbar = (Toolbar) findViewById(R.id.toolbar_search);
-//
-//        setSupportActionBar();
-//        toolbar.setTitle("");
-
 
     }
 // cấp quyền truy cập bộ nhớ

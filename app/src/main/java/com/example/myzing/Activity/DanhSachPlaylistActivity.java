@@ -9,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.example.myzing.Adapter.DanhSachPlaylistAdapter;
+import com.example.myzing.DAO.IPlaylistDAO;
+import com.example.myzing.DAO.PlaylistDAO;
 import com.example.myzing.Model.Playlist;
 import com.example.myzing.R;
 import com.example.myzing.Service.APIService;
@@ -36,24 +38,18 @@ public class DanhSachPlaylistActivity extends AppCompatActivity {
     }
 
     private void GetData() {
-        DataService dataService= APIService.getDataService();
-        Call<List<Playlist>> listCall= dataService.GetAllPlaylist();
-        listCall.enqueue(new Callback<List<Playlist>>() {
+        new PlaylistDAO().getAllPlaylist(new IPlaylistDAO() {
             @Override
-            public void onResponse(Call<List<Playlist>> call, Response<List<Playlist>> response) {
-                ArrayList<Playlist> arrayPlaylist = (ArrayList<Playlist>) response.body();
-//                Log.d("aaa", arrayPlaylist.get(0).getNamePlaylist());
-
-                danhSachPlaylistAdapter = new DanhSachPlaylistAdapter(DanhSachPlaylistActivity.this,arrayPlaylist);
-                recyclerView_Danhsach_Playlist.setLayoutManager(new GridLayoutManager(DanhSachPlaylistActivity.this,2));
-                recyclerView_Danhsach_Playlist.setAdapter(danhSachPlaylistAdapter);
-            }
-
-            @Override
-            public void onFailure(Call<List<Playlist>> call, Throwable t) {
-
+            public void returnListPlaylist(ArrayList<Playlist> listPlaylist) {
+                while (listPlaylist.size()>0){
+                    danhSachPlaylistAdapter = new DanhSachPlaylistAdapter(DanhSachPlaylistActivity.this,listPlaylist);
+                    recyclerView_Danhsach_Playlist.setLayoutManager(new GridLayoutManager(DanhSachPlaylistActivity.this,2));
+                    recyclerView_Danhsach_Playlist.setAdapter(danhSachPlaylistAdapter);
+                    break;
+                }
             }
         });
+
     }
 
 

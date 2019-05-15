@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.example.myzing.Activity.DanhSachPlaylistActivity;
 import com.example.myzing.Activity.ListSongActivity;
 import com.example.myzing.Adapter.PlaylistAdapter;
+import com.example.myzing.DAO.IPlaylistDAO;
+import com.example.myzing.DAO.PlaylistDAO;
 import com.example.myzing.Model.Playlist;
 import com.example.myzing.R;
 import com.example.myzing.Service.APIService;
@@ -63,21 +65,15 @@ public class Fragment_Playlist extends Fragment {
     }
 
     private void GetData() {
-        DataService dataService = APIService.getDataService();
-        Call<List<Playlist>> listCall = dataService.GetPlaylist();
-        listCall.enqueue(new Callback<List<Playlist>>() {
+        new PlaylistDAO().getPlaylistHome(new IPlaylistDAO() {
             @Override
-            public void onResponse(Call<List<Playlist>> call, Response<List<Playlist>> response) {
-                arrayPlaylist = (ArrayList<Playlist>) response.body();
-//                Log.d("BBB",arrayPlaylist.get(0).getNamePlaylist());
-                playlistAdapter = new PlaylistAdapter(getActivity(), android.R.layout.simple_list_item_1, arrayPlaylist);
-                lv_Playlist.setAdapter(playlistAdapter);
-                setListViewHeightBasedOnChildren(lv_Playlist);
-            }
-
-            @Override
-            public void onFailure(Call<List<Playlist>> call, Throwable t) {
-
+            public void returnListPlaylist(ArrayList<Playlist> listPlaylist) {
+                while (listPlaylist.size()>0){
+                    playlistAdapter = new PlaylistAdapter(getActivity(), android.R.layout.simple_list_item_1, listPlaylist);
+                    lv_Playlist.setAdapter(playlistAdapter);
+                    setListViewHeightBasedOnChildren(lv_Playlist);
+                    break;
+                }
             }
         });
     }

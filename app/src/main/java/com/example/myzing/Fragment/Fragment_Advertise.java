@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.myzing.Adapter.AdvertiseAdapter;
+import com.example.myzing.DAO.AdvertiseDAO;
+import com.example.myzing.DAO.IAdvertiseDAO;
 import com.example.myzing.Model.Advertise;
 import com.example.myzing.R;
 import com.example.myzing.Service.APIService;
@@ -50,6 +52,34 @@ public class Fragment_Advertise extends Fragment {
     }
 
     private void GetData() {
+        new AdvertiseDAO().getAdvertise(new IAdvertiseDAO() {
+            @Override
+            public void returnListAdvertise(ArrayList<Advertise> listAdvertise) {
+                while (listAdvertise.size()>0){
+                    advertiseAdapter = new AdvertiseAdapter(getActivity(), listAdvertise);
+                    viewPager.setAdapter(advertiseAdapter);
+                    circleIndicator.setViewPager(viewPager);
+
+                    handler = new Handler();
+                    runnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            currentItem = viewPager.getCurrentItem();
+                            currentItem++;
+                            if(viewPager.getAdapter() != null){
+                                if(currentItem >= viewPager.getAdapter().getCount()){
+                                    currentItem = 0;
+                                }
+                            }
+                            viewPager.setCurrentItem(currentItem, true);
+                            handler.postDelayed(runnable, 5000);
+                        }
+                    };
+                    handler.postDelayed(runnable, 5000);
+                    break;
+                }
+            }
+        });
         DataService dataService = APIService.getDataService();
         Call<List<Advertise>> listCall = dataService.GetDataAdvertise();
         listCall.enqueue(new Callback<List<Advertise>>() {
