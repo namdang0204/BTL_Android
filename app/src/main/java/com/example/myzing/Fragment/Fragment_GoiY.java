@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.example.myzing.Activity.DanhSachGoiYActivity;
 import com.example.myzing.Adapter.ListSongAdapter;
+import com.example.myzing.DAO.ISongDAO;
+import com.example.myzing.DAO.SongDAO;
 import com.example.myzing.Model.Song;
 import com.example.myzing.R;
 import com.example.myzing.Service.APIService;
@@ -54,22 +56,18 @@ public class Fragment_GoiY extends Fragment {
     }
 
     private void getData() {
-        DataService dataService= APIService.getDataService();
-        Call<List<Song>> callBack= dataService.GetListSongGoiY("ThaoXinhGai");
-        callBack.enqueue(new Callback<List<Song>>() {
+        new SongDAO().getSongGoiY(new ISongDAO() {
             @Override
-            public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
-                arraySong= (ArrayList<Song>) response.body();
-                listSongAdapter= new ListSongAdapter(getActivity(), arraySong);
-                recyclerView_GoiY.setLayoutManager(new LinearLayoutManager(getActivity()));
-//                Toast.makeText(getContext(),arraySong.get(0).getNameSong()+"", Toast.LENGTH_SHORT).show();
-                recyclerView_GoiY.setAdapter(listSongAdapter);
-            }
-
-            @Override
-            public void onFailure(Call<List<Song>> call, Throwable t) {
-
+            public void returnListSong(ArrayList<Song> listSong) {
+                while (listSong.size()>0){
+                    arraySong = listSong;
+                    listSongAdapter= new ListSongAdapter(getActivity(), arraySong);
+                    recyclerView_GoiY.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    recyclerView_GoiY.setAdapter(listSongAdapter);
+                    break;
+                }
             }
         });
+
     }
 }

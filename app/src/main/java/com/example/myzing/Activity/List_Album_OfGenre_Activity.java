@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.myzing.Adapter.ListAlbumOfGenreAdapter;
+import com.example.myzing.DAO.AlbumDAO;
+import com.example.myzing.DAO.IAlbumDAO;
 import com.example.myzing.Model.Album;
 import com.example.myzing.Model.Genre;
 import com.example.myzing.Model.Topic;
@@ -41,25 +43,17 @@ public class List_Album_OfGenre_Activity extends AppCompatActivity {
     }
 
     private void GetData() {
-        DataService dataService = APIService.getDataService();
-        Call<List<Album>> listCall = dataService.GetListAlbumOfGenre(genre.getIdGenre());
-        listCall.enqueue(new Callback<List<Album>>() {
+        new AlbumDAO().getAlbumOfGenre(genre, new IAlbumDAO() {
             @Override
-            public void onResponse(Call<List<Album>> call, Response<List<Album>> response) {
-                ArrayList<Album> arrayAlbum = (ArrayList<Album>) response.body();
-                Log.d("aaa",arrayAlbum.size()+"");
-
-                listAlbumOfGenreAdapter = new ListAlbumOfGenreAdapter(List_Album_OfGenre_Activity.this, arrayAlbum);
-
-                recyclerView_List_Album__OfGenre.setLayoutManager(new GridLayoutManager(List_Album_OfGenre_Activity.this, 2));
-                recyclerView_List_Album__OfGenre.setAdapter(listAlbumOfGenreAdapter);
-            }
-            @Override
-            public void onFailure(Call<List<Album>> call, Throwable t) {
-
+            public void returnListAlbum(ArrayList<Album> listAlbum) {
+                while (listAlbum.size()>0){
+                    listAlbumOfGenreAdapter = new ListAlbumOfGenreAdapter(List_Album_OfGenre_Activity.this, listAlbum);
+                    recyclerView_List_Album__OfGenre.setLayoutManager(new GridLayoutManager(List_Album_OfGenre_Activity.this, 2));
+                    recyclerView_List_Album__OfGenre.setAdapter(listAlbumOfGenreAdapter);
+                    break;
+                }
             }
         });
-
     }
 
     private void init() {

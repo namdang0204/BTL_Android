@@ -46,12 +46,11 @@ public class SearchActivity extends AppCompatActivity {
                 new SongDAO().getSongSearch(s, new ISongDAO() {
                     @Override
                     public void returnListSong(ArrayList<Song> listSong) {
-//                        Iterator it = listSong.iterator();
-                        while (listSong.size() > 0){
+                        while (listSong.size() > 0) {
                             arrayListSong = listSong;
                             listSongAdapter = new ListSongAdapter(SearchActivity.this, arrayListSong);
-                                recyclerViewSearch.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
-                                recyclerViewSearch.setAdapter(listSongAdapter);
+                            recyclerViewSearch.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
+                            recyclerViewSearch.setAdapter(listSongAdapter);
                             break;
                         }
                     }

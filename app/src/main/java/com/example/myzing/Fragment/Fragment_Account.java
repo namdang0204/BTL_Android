@@ -117,13 +117,15 @@ public class Fragment_Account extends Fragment {
                             cardView.setVisibility(View.VISIBLE);
                         }
                         if(typeUser.equalsIgnoreCase("google")){
-                            LoginActivity.mGoogleSignInClient.revokeAccess()
-                                    .addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            Toast.makeText(getActivity(), "Logout successfully", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
+                            if(LoginActivity.mGoogleSignInClient != null){
+                                LoginActivity.mGoogleSignInClient.revokeAccess()
+                                        .addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                Toast.makeText(getActivity(), "Logout successfully", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                            }
                         }
                         textViewStatusLogin.setText("Login");
                         textViewNameAccount.setText("Đăng nhập");

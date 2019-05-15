@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -41,16 +42,17 @@ public class CreatAccountActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_creat_account_new:
-                if(validateUserName() && validatePassword() && validateEmail()){
-                    String userName = textInputLayoutUserName.getEditText().getText().toString().trim();
-                    String passWord = textInputLayoutPassword.getEditText().getText().toString().trim();
-                    String email = textInputLayoutEmail.getEditText().getText().toString().trim();
-                    user = new User();
-                    user.setUserName(userName);
-                    user.setPassword(passWord);
-                    user.setEmail(email);
-                    creatAccount(user);
+                if(!validateUserName() | !validatePassword() | !validateEmail()){
+                   return;
                 }
+                String userName = textInputLayoutUserName.getEditText().getText().toString().trim();
+                String passWord = textInputLayoutPassword.getEditText().getText().toString().trim();
+                String email = textInputLayoutEmail.getEditText().getText().toString().trim();
+                user = new User();
+                user.setUserName(userName);
+                user.setPassword(passWord);
+                user.setEmail(email);
+                creatAccount(user);
                 break;
         }
     }
@@ -80,6 +82,9 @@ public class CreatAccountActivity extends AppCompatActivity implements View.OnCl
         String email = textInputLayoutEmail.getEditText().getText().toString().trim();
         if(email.isEmpty()){
             textInputLayoutEmail.setError("Không được để trống");
+            return false;
+        }else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            textInputLayoutEmail.setError("Nhập địa chỉ Email");
             return false;
         }else{
             textInputLayoutEmail.setError(null);

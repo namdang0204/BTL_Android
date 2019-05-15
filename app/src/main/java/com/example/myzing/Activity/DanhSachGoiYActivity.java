@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.example.myzing.Adapter.ListSongAdapter;
+import com.example.myzing.DAO.ISongDAO;
+import com.example.myzing.DAO.SongDAO;
 import com.example.myzing.Model.Song;
 import com.example.myzing.R;
 import com.example.myzing.Service.APIService;
@@ -36,23 +38,17 @@ public class DanhSachGoiYActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        DataService dataService= APIService.getDataService();
-        Call<List<Song>> listCall= dataService.GetAllListSongGoiY("AllSong");
-        listCall.enqueue(new Callback<List<Song>>() {
-            @Override
-            public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
-                ArrayList<Song> listSong= (ArrayList<Song>) response.body();
-                listSongAdapter= new ListSongAdapter(DanhSachGoiYActivity.this,listSong);
-                recyclerView_List_GoiY.setLayoutManager(new LinearLayoutManager(DanhSachGoiYActivity.this));
-                recyclerView_List_GoiY.setAdapter(listSongAdapter);
-
-            }
-
-            @Override
-            public void onFailure(Call<List<Song>> call, Throwable t) {
-
-            }
-        });
+      new SongDAO().getAllListSongGoiY(new ISongDAO() {
+          @Override
+          public void returnListSong(ArrayList<Song> listSong) {
+              while (listSong.size() > 0 ){
+                  listSongAdapter= new ListSongAdapter(DanhSachGoiYActivity.this,listSong);
+                  recyclerView_List_GoiY.setLayoutManager(new LinearLayoutManager(DanhSachGoiYActivity.this));
+                  recyclerView_List_GoiY.setAdapter(listSongAdapter);
+                  break;
+              }
+          }
+      });
     }
     private void init() {
 //        String title = "";

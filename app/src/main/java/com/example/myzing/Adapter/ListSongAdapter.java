@@ -42,8 +42,8 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Song song= arrayListSong.get(i);
-        viewHolder.txtView_NameSong_GoiY.setText(song.getNameSong());
-        viewHolder.txtView_NameSinger_GoiY.setText(song.getSinger());
+        viewHolder.txtView_NameSong.setText(song.getNameSong());
+        viewHolder.txtView_NameSinger.setText(song.getSinger());
         Picasso.with(context).load(song.getImageSong()).into(viewHolder.imgView_image_GoiY);
     }
 
@@ -54,15 +54,15 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView txtView_NameSong_GoiY, txtView_NameSinger_GoiY, txtView_Viewmore_GoiY;
-        private ImageButton imgButton_GoiY;
+        private TextView txtView_NameSong, txtView_NameSinger;
+        private ImageButton imgButton_MenuSong;
         private ImageView imgView_image_GoiY;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtView_NameSong_GoiY = itemView.findViewById(R.id.textview_name_song_goiy);
-            txtView_NameSinger_GoiY= itemView.findViewById(R.id.textview_name_singer_goiy);
-            imgButton_GoiY= itemView.findViewById(R.id.image_button_goiy);
+            txtView_NameSong = itemView.findViewById(R.id.textview_name_song_goiy);
+            txtView_NameSinger = itemView.findViewById(R.id.textview_name_singer_goiy);
+            imgButton_MenuSong = itemView.findViewById(R.id.image_button_goiy);
             imgView_image_GoiY= itemView.findViewById(R.id.imageview_image_goiy);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -81,15 +81,15 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
                     context.startActivity(intent);
                 }
             });
-            imgButton_GoiY.setOnClickListener(new View.OnClickListener() {
+            imgButton_MenuSong.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     showPopupMenu();
                 }
 
                 private void showPopupMenu() {
-                    PopupMenu popupMenu= new PopupMenu(context, imgButton_GoiY);
-                    popupMenu.getMenuInflater().inflate(R.menu.menu_goi_y, popupMenu.getMenu());
+                    PopupMenu popupMenu= new PopupMenu(context, imgButton_MenuSong);
+                    popupMenu.getMenuInflater().inflate(R.menu.menu_song, popupMenu.getMenu());
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
