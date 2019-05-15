@@ -137,6 +137,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.button_creat_account:
                 Intent intent = new Intent(this, CreatAccountActivity.class);
                 startActivity(intent);
+                finish();
                 break;
         }
     }

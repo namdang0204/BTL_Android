@@ -112,4 +112,5 @@ public class SearchActivity extends AppCompatActivity {
 //        searchView.setIconifiedByDefault(false);
         return true;
     }
+
 }
