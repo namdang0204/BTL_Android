@@ -41,7 +41,7 @@ public class CreatAccountActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_creat_account_new:
-                if(validateUserName() && validatePassword()){
+                if(validateUserName() && validatePassword() && validateEmail()){
                     String userName = textInputLayoutUserName.getEditText().getText().toString().trim();
                     String passWord = textInputLayoutPassword.getEditText().getText().toString().trim();
                     String email = textInputLayoutEmail.getEditText().getText().toString().trim();
@@ -76,7 +76,16 @@ public class CreatAccountActivity extends AppCompatActivity implements View.OnCl
             return true;
         }
     }
-
+    private boolean validateEmail(){
+        String email = textInputLayoutEmail.getEditText().getText().toString().trim();
+        if(email.isEmpty()){
+            textInputLayoutEmail.setError("Không được để trống");
+            return false;
+        }else{
+            textInputLayoutEmail.setError(null);
+            return true;
+        }
+    }
     private void creatAccount(User user){
         DataService dataService = APIService.getDataService();
         Call<String> callBack = dataService.creatAccount(user.getUserName(), user.getPassword(), user.getEmail());
