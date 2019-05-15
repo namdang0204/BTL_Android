@@ -22,8 +22,6 @@
         android:textColor="@color/mauden"
         android:textSize="14sp"
         android:text="Nhac Hot"
-        android:lines="1"
-        android:ellipsize="end"
         android:id="@+id/textview_name_playlist_oftopic"
         android:layout_width="160dp"
         android:layout_height="wrap_content" />

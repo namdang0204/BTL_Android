@@ -13,7 +13,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.myzing.Activity.PlayMusicActivity;
 import com.example.myzing.Model.Song;
@@ -24,11 +23,11 @@ import java.util.ArrayList;
 
 public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHolder> {
     Context context;
-    ArrayList<Song> arrayListSongGoiY;
+    ArrayList<Song> arrayListSong;
 
-    public ListSongAdapter(Context context, ArrayList<Song> arrayListSongGoiY) {
+    public ListSongAdapter(Context context, ArrayList<Song> arrayListSong) {
         this.context = context;
-        this.arrayListSongGoiY = arrayListSongGoiY;
+        this.arrayListSong = arrayListSong;
     }
 
     @NonNull
@@ -42,7 +41,7 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Song song=arrayListSongGoiY.get(i);
+        Song song= arrayListSong.get(i);
         viewHolder.txtView_NameSong_GoiY.setText(song.getNameSong());
         viewHolder.txtView_NameSinger_GoiY.setText(song.getSinger());
         Picasso.with(context).load(song.getImageSong()).into(viewHolder.imgView_image_GoiY);
@@ -50,7 +49,7 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return arrayListSongGoiY.size();
+        return arrayListSong.size();
     }
 
 
@@ -76,7 +75,7 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
                         PlayMusicActivity.mediaPlayer = null;
                     }
                     Bundle bundle = new Bundle();
-                    bundle.putParcelableArrayList("listSongOn", arrayListSongGoiY);
+                    bundle.putParcelableArrayList("listSongOn", arrayListSong);
                     bundle.putInt("position", getPosition());
                     intent.putExtras(bundle);
                     context.startActivity(intent);

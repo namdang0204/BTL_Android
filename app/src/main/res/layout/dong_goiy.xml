@@ -15,8 +15,8 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/imageview_image_goiy"
-            android:layout_width="70dp"
-            android:layout_height="70dp" />
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
     </android.support.v7.widget.CardView>
 
     <TextView
@@ -24,7 +24,7 @@
         android:layout_toRightOf="@id/cardview_goiy"
         android:textColor="@color/mauden"
         android:id="@+id/textview_name_song_goiy"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
         android:textSize="16dp"
         android:text="Thà đừng nói ra"

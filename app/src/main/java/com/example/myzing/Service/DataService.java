@@ -5,6 +5,7 @@ import com.example.myzing.Model.Album;
 import com.example.myzing.Model.Playlist;
 import com.example.myzing.Model.Song;
 import com.example.myzing.Model.TopicGenre;
+import com.example.myzing.Model.User;
 
 import java.util.List;
 
@@ -65,6 +66,17 @@ public interface DataService {
 
     @FormUrlEncoded
     @POST("checkUser.php")
-    Call<String> checkLogin(@Field("userName") String userName,
-                            @Field("passWord") String passWord);
+    Call<User> checkLogin(@Field("userName") String userName,
+                          @Field("passWord") String passWord);
+
+    @FormUrlEncoded
+    @POST("creatAccount.php")
+    Call<String> creatAccount(@Field("userName") String userName,
+                              @Field("passWord") String passWord,
+                              @Field("email") String email);
+
+    @FormUrlEncoded
+    @POST("updateLikes.php")
+    Call<String> updateLike(@Field("idSong") String idSong,
+                            @Field("idUser") String idUser);
 }
